@@ -7,3 +7,9 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.logo {
+  width: 100px;
+  margin-top: -8px;
+  display: inline !important;
+}
