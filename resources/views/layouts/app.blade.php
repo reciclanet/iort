@@ -54,6 +54,9 @@
                             <li><a href="{{ route('login') }}">Conectarse</a></li>
                             {{-- <li><a href="{{ route('register') }}">Register</a></li> --}}
                         @else
+                            <li>
+                              <a href="personas" aria-expanded="false">Personas</a>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -78,11 +81,28 @@
                 </div>
             </div>
         </nav>
+
+        <div class="col-md-2">
+            <nav class="nav-sidebar">
+        		<ul class="nav tabs">
+                  <li class="active"><a href="#tab1" data-toggle="tab">Lorem ipsum</a></li>
+                  <li class=""><a href="#tab2" data-toggle="tab">Dolor asit amet</a></li>
+                  <li class=""><a href="#tab3" data-toggle="tab">Stet clita</a></li>
+        		</ul>
+        	</nav>
+        </div>
 
-        @yield('content')
+        <div class="col-md-9">
+            <div class="row">
+                <div>
+                  @yield('content')
+                </div>
+            </div>
+          </div>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>

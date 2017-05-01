@@ -4,6 +4,7 @@
   <title></title>
 </head>
 <body>
-  {{ $persona->nombre }}
+  {{ $persona }}
+  {{ $persona->tipoConocido->nombre }}
 </body>
 </html>
