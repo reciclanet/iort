@@ -6,5 +6,8 @@
 <body>
   {{ $persona }}
   {{ $persona->tipoConocido->nombre }}
+  @if ($persona->sexo)
+    {{ $persona->sexo->nombre }}
+  @endif
 </body>
 </html>
