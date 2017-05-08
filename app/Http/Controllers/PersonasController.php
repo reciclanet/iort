@@ -13,7 +13,15 @@ class PersonasController extends Controller
       return view( 'personas.index', compact('personas'));
     }
 
+    public function create() {
+      return view ('personas.create');
+    }
+
     public function show(Persona $persona) {
       return view ('personas.show', compact('persona'));
+    }
+
+    public function edit(Persona $persona) {
+      return view ('personas.edit', compact('persona'));
     }
 }

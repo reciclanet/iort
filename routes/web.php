@@ -20,4 +20,6 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 
 Route::get('/personas', 'PersonasController@index');
+Route::get('/personas/create', 'PersonasController@create');
 Route::get('/personas/{persona}', 'PersonasController@show');
+Route::get('/personas/{persona}/edit', 'PersonasController@edit');
