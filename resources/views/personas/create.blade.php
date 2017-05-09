@@ -3,7 +3,7 @@
 @section('content')
 
 <h1>Create</h1>
-<form action="/personas/" method="POST">
+<form method="POST" action="/personas">
   @include('personas/form')
 </form>
 

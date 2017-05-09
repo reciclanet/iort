@@ -21,5 +21,8 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/personas', 'PersonasController@index');
 Route::get('/personas/create', 'PersonasController@create');
+Route::post('/personas', 'PersonasController@store');
 Route::get('/personas/{persona}', 'PersonasController@show');
 Route::get('/personas/{persona}/edit', 'PersonasController@edit');
+Route::patch('/personas/{persona}', 'PersonasController@update');
+Route::delete('/personas/{persona}', 'PersonasController@destroy');

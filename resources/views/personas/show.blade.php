@@ -2,7 +2,9 @@
 
 @section('content')
   {{ $persona }}
-  {{ $persona->tipoConocido->nombre }}
+  @if ($persona->tipoConocido)
+    {{ $persona->tipoConocido->nombre }}
+  @endif
   @if ($persona->tipoAlta)
     {{ $persona->tipoAlta->nombre }}
   @endif

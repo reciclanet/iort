@@ -24,4 +24,10 @@ class PersonasController extends Controller
     public function edit(Persona $persona) {
       return view ('personas.edit', compact('persona'));
     }
+
+    public function store() {
+      Persona::create(request(['nombre', 'apellido_1']));
+
+      return redirect('/personas');
+    }
 }

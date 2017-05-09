@@ -16,18 +16,18 @@ class CreateOrganizacionsTable extends Migration
         Schema::create('organizaciones', function (Blueprint $table) {
             $table->increments('id');
             $table->string('razon_social');
-            $table->string('actividad_principal');
-            $table->string('cif_nif');
-            $table->smallInteger('forma_juridica_id' );
-            $table->string('email');
-            $table->string('telefono_1');
-            $table->string('telefono_2');
-            $table->string('pagina_web');
-            $table->boolean('autoriza_logo');
-            $table->string('direccion');
-            $table->string('cp');
-            $table->string('poblacion');
-            $table->string('provincia');
+            $table->string('actividad_principal')->nullable();
+            $table->string('cif_nif')->nullable();
+            $table->smallInteger('forma_juridica_id' )->unsigned()->nullable();
+            $table->string('email')->nullable();
+            $table->string('telefono_1')->nullable();
+            $table->string('telefono_2')->nullable();
+            $table->string('pagina_web')->nullable();
+            $table->boolean('autoriza_logo')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('cp')->nullable();
+            $table->string('poblacion')->nullable();
+            $table->string('provincia')->nullable();
             $table->timestamps();
         });
     }
