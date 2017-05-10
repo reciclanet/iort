@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Persona;
+use App\Http\Requests\GuardarPersonaRequest;
 
 class PersonasController extends Controller
 {
@@ -25,8 +26,8 @@ class PersonasController extends Controller
       return view ('personas.edit', compact('persona'));
     }
 
-    public function store() {
-      Persona::create(request(['nombre', 'apellido_1']));
+    public function store(GuardarPersonaRequest $request) {
+      Persona::create(request(['nombre', 'apellido_1', 'apellido_2']));
 
       return redirect('/personas');
     }
