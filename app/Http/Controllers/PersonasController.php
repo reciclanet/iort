@@ -27,8 +27,14 @@ class PersonasController extends Controller
     }
 
     public function store(GuardarPersonaRequest $request) {
-      Persona::create(request(['nombre', 'apellido_1', 'apellido_2']));
+      $persona->update($request->except(['id', 'created_at', 'updated_at']));
 
       return redirect('/personas');
+    }
+
+    public function update(GuardarPersonaRequest $request, Persona $persona) {
+      $persona->update($request->except(['id', 'created_at', 'updated_at']));
+
+      return view ('personas.show', compact('persona'));
     }
 }

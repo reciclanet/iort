@@ -26,7 +26,10 @@ class GuardarPersonaRequest extends FormRequest
         return [
           'nombre' => 'required',
           'apellido_1' => 'required',
-          'apellido_2' => 'nullable'
+          'apellido_2' => 'nullable',
+          'fecha_nacimiento' => 'nullable|date',
+          'email' => 'nullable|email',
+          'pagina_web' => 'nullable|url',
         ];
     }
 }
