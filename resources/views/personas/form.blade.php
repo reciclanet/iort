@@ -4,8 +4,7 @@
  <div class="form-group row {{ $errors->has('nombre') ? 'error' : '' }}">
    <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
    <div class="col-sm-10">
-     <input type="text" class="form-control" id="nombre" name="nombre"
-      value="{{ $persona->nombre or old('nombre') }}" placeholder="Nombre" required />
+     {{ Form::text('nombre')}}
     </div>
  </div>
  <div class="form-group row {{ $errors->has('apellido_1') ? 'error' : '' }}">
@@ -102,15 +101,15 @@
    <div class="form-group row {{ $errors->has('tipo_conocido_id') ? 'error' : '' }}">
       <label for="tipo_conocido_id" class="col-sm-2 col-form-label">¿Cómo nos has conocido?</label>
       <div class="col-sm-10">
-      <input type="text" class="form-control" id="tipo_conocido_id" name="tipo_conocido_id"
-       value="{{ $persona->tipo_conocido_id or old('tipo_conocido_id') }}" placeholder="Conocido" />
-     </div>
+        {{ Form::select('tipo_conocido_id', $tipos_conocido, null, ['class'=>"form-control", 'placeholder' => ''])}}
+      </div>
     </div>
    <div class="form-group row {{ $errors->has('tipo_alta_id') ? 'error' : '' }}">
       <label for="tipo_alta_id" class="col-sm-2 col-form-label">Tipo de alta</label>
       <div class="col-sm-10">
-      <input type="text" class="form-control" id="tipo_alta_id" name="tipo_alta_id"
-       value="{{ $persona->tipo_alta_id or old('tipo_alta_id') }}" placeholder="Tipo de alta" />
+        <div class="col-sm-10">
+          {{ Form::select('tipo_alta_id', $tipos_alta, null, ['class'=>"form-control", 'placeholder' => ''])}}
+        </div>
      </div>
     </div>
    <div class="form-group row {{ $errors->has('organizacion_id') ? 'error' : '' }}">

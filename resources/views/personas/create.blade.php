@@ -3,8 +3,9 @@
 @section('content')
 
 <h1>Create</h1>
-<form method="POST" action="/personas">
+
+{!! Form::open(['action' => 'PersonasController@create']) !!}
   @include('personas/form')
-</form>
+{!! Form::close() !!}
 
 @endsection

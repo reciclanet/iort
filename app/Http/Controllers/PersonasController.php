@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Persona;
+use App\TipoAlta;
+use App\TipoConocido;
 use App\Http\Requests\GuardarPersonaRequest;
 
 class PersonasController extends Controller
@@ -15,7 +17,10 @@ class PersonasController extends Controller
     }
 
     public function create() {
-      return view ('personas.create');
+      $tipos_alta = TipoAlta::all('nombre', 'id');
+      $tipos_conocido = TipoConocido::all('nombre', 'id');
+
+      return view ('personas.create', compact('tipos_alta', 'tipos_conocido'));
     }
 
     public function show(Persona $persona) {
@@ -23,7 +28,10 @@ class PersonasController extends Controller
     }
 
     public function edit(Persona $persona) {
-      return view ('personas.edit', compact('persona'));
+      $tipos_alta = TipoAlta::all('nombre', 'id');
+      $tipos_conocido = TipoConocido::all('nombre', 'id');
+
+      return view ('personas.edit', compact('persona', 'tipos_alta', 'tipos_conocido'));
     }
 
     public function store(GuardarPersonaRequest $request) {

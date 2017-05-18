@@ -3,8 +3,9 @@
 @section('content')
 
 <h1>Editar</h1>
-<form method="POST" action="/personas/{{ $persona->id }}" >
-  <input name="_method" type="hidden" value="PATCH">
+
+{!! Form::model($persona, ['action' => ['PersonasController@update', $persona->id], 'method' => 'PATCH']) !!}
   @include('personas/form')
-</form>
+{!! Form::close() !!}
+
 @endsection
