@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Persona;
 use App\TipoAlta;
 use App\TipoConocido;
+use App\Sexo;
 use App\Http\Requests\GuardarPersonaRequest;
 
 class PersonasController extends Controller
@@ -17,10 +18,11 @@ class PersonasController extends Controller
     }
 
     public function create() {
-      $tipos_alta = TipoAlta::all('nombre', 'id');
-      $tipos_conocido = TipoConocido::all('nombre', 'id');
+      $tipos_alta = TipoAlta::pluck('nombre', 'id');
+      $tipos_conocido = TipoConocido::pluck('nombre', 'id');
+      $sexos = Sexo::pluck('nombre', 'id');
 
-      return view ('personas.create', compact('tipos_alta', 'tipos_conocido'));
+      return view ('personas.create', compact('tipos_alta', 'tipos_conocido', 'sexos'));
     }
 
     public function show(Persona $persona) {
@@ -28,10 +30,11 @@ class PersonasController extends Controller
     }
 
     public function edit(Persona $persona) {
-      $tipos_alta = TipoAlta::all('nombre', 'id');
-      $tipos_conocido = TipoConocido::all('nombre', 'id');
+      $tipos_alta = TipoAlta::pluck('nombre', 'id');
+      $tipos_conocido = TipoConocido::pluck('nombre', 'id');
+      $sexos = Sexo::pluck('nombre', 'id');
 
-      return view ('personas.edit', compact('persona', 'tipos_alta', 'tipos_conocido'));
+      return view ('personas.edit', compact('persona', 'tipos_alta', 'tipos_conocido', 'sexos'));
     }
 
     public function store(GuardarPersonaRequest $request) {
