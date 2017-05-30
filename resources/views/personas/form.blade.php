@@ -44,7 +44,7 @@
 
   <label for="provincia" class="col-md-2 col-form-label">Provincia</label>
   <div class="form-group col-md-4 {{ $errors->has('provincia') ? 'error' : '' }}">
-    {{ Form::text('provincia', null, ['class' =>"form-control"] )}}
+    {{ Form::select('provincia', $provincias, null, ['class'=>"form-control", 'placeholder' => ''])}}
   </div>
 
   <label for="telefono_1" class="col-md-2 col-form-label">Teléfono 1</label>

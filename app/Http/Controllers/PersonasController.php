@@ -8,6 +8,7 @@ use App\TipoAlta;
 use App\TipoConocido;
 use App\Sexo;
 use App\Organizacion;
+use App\Provincia;
 use App\Http\Requests\GuardarPersonaRequest;
 
 class PersonasController extends Controller
@@ -19,12 +20,14 @@ class PersonasController extends Controller
     }
 
     public function create() {
+      $persona = new Persona;
       $tipos_alta = TipoAlta::pluck('nombre', 'id');
       $tipos_conocido = TipoConocido::pluck('nombre', 'id');
       $sexos = Sexo::pluck('nombre', 'id');
       $organizaciones = Organizacion::pluck('nombre', 'id');
+      $provincias = Provincia::pluck('nombre', 'cod');
 
-      return view ('personas.create', compact('tipos_alta', 'tipos_conocido', 'sexos', 'organizaciones'));
+      return view ('personas.create', compact('persona', 'tipos_alta', 'tipos_conocido', 'sexos', 'organizaciones', 'provincias'));
     }
 
     public function show(Persona $persona) {
@@ -36,12 +39,13 @@ class PersonasController extends Controller
       $tipos_conocido = TipoConocido::pluck('nombre', 'id');
       $sexos = Sexo::pluck('nombre', 'id');
       $organizaciones = Organizacion::pluck('nombre', 'id');
+      $provincias = Provincia::pluck('nombre', 'cod');
 
-      return view ('personas.edit', compact('persona', 'tipos_alta', 'tipos_conocido', 'sexos', 'organizaciones'));
+      return view ('personas.edit', compact('persona', 'tipos_alta', 'tipos_conocido', 'sexos', 'organizaciones', 'provincias'));
     }
 
     public function store(GuardarPersonaRequest $request) {
-      $persona->update($request->except(['id', 'created_at', 'updated_at']));
+      Persona::create($request->except(['id', 'created_at', 'updated_at']));
 
       return redirect('/personas');
     }

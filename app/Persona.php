@@ -20,4 +20,8 @@ class Persona extends Model
     public function organizacion() {
       return $this->belongsTo(Organizacion::class);
     }
+
+    public function provincia() {
+      return $this->belongsTo(Provincia::class, 'cod');
+    }
 }
