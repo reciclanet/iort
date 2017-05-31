@@ -19,15 +19,24 @@ class PersonasController extends Controller
       return view( 'personas.index', compact('personas'));
     }
 
-    public function create() {
-      $persona = new Persona;
+    protected function formulario(string $vista, Persona $persona) {
       $tipos_alta = TipoAlta::pluck('nombre', 'id');
       $tipos_conocido = TipoConocido::pluck('nombre', 'id');
       $sexos = Sexo::pluck('nombre', 'id');
       $organizaciones = Organizacion::pluck('nombre', 'id');
       $provincias = Provincia::pluck('nombre', 'cod');
 
-      return view ('personas.create', compact('persona', 'tipos_alta', 'tipos_conocido', 'sexos', 'organizaciones', 'provincias'));
+      return view ($vista,
+        compact('persona',
+          'tipos_alta',
+          'tipos_conocido',
+          'sexos',
+          'organizaciones',
+          'provincias'));
+    }
+
+    public function create() {
+      return $this->formulario('personas.create', new Persona);
     }
 
     public function show(Persona $persona) {
@@ -35,13 +44,7 @@ class PersonasController extends Controller
     }
 
     public function edit(Persona $persona) {
-      $tipos_alta = TipoAlta::pluck('nombre', 'id');
-      $tipos_conocido = TipoConocido::pluck('nombre', 'id');
-      $sexos = Sexo::pluck('nombre', 'id');
-      $organizaciones = Organizacion::pluck('nombre', 'id');
-      $provincias = Provincia::pluck('nombre', 'cod');
-
-      return view ('personas.edit', compact('persona', 'tipos_alta', 'tipos_conocido', 'sexos', 'organizaciones', 'provincias'));
+      return $this->formulario('personas.edit', $persona);
     }
 
     public function store(GuardarPersonaRequest $request) {

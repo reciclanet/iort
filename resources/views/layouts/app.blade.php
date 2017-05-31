@@ -84,9 +84,9 @@
 
         <nav>
         		<ul class="sidenav">
-                  <li class="{{ Request::is('/')? 'active' : ''}}"><a href="{{ url('/')}}">Home</a></li>
+                  <li class="{{ Request::is('/')? 'active' : ''}}"><a href="{{ url('/')}}">Inicio</a></li>
                   <li class="{{ Request::is('personas')? 'active' : ''}}"><a href="{{ url('personas')}}">Personas</a></li>
-                  <li class="{{ Request::is('tab3')? 'active' : ''}}"><a href="{{ url('tab3')}}">Stet clita</a></li>
+                  <li class="{{ Request::is('organizaciones')? 'active' : ''}}"><a href="{{ url('organizaciones')}}">Organizaciones</a></li>
         		</ul>
       	</nav>
 
