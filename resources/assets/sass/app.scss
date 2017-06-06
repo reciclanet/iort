@@ -24,11 +24,15 @@ font-size: 19px;
 
 body {margin: 0;}
 
+.navbar {
+  margin-bottom: 0;
+}
+
 ul.sidenav {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 25%;
+    width: 200px;
     background-color: #f1f1f1;
     //position: relative;
     //float: left;
@@ -57,7 +61,7 @@ ul.sidenav li a:hover:not(.active) {
 }
 
 div.content {
-    margin-left: 25%;
+    margin-left: 200px;
     padding: 1px 16px;
 }
 

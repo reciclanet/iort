@@ -2,66 +2,66 @@
 @include ('layouts.errors')
 
 <div class='row'>
-  <label for="razon_social" class="col-md-2 col-form-label">Razón Social</label>
+  {{ Form::label('razon_social', 'Razón Social', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-10  {{ $errors->has('razon_social') ? 'error' : '' }}">
     {{ Form::text('razon_social', null, ['class' =>"form-control"] )}}
   </div>
 
-  <label for="actividad_principal" class="col-md-2 col-form-label">Actividad Principal</label>
+  {{ Form::label('actividad_principal', 'Actividad Principal', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-10 {{ $errors->has('actividad_principal') ? 'error' : '' }}">
     {{ Form::text('actividad_principal', null, ['class' =>"form-control"] )}}
   </div>
 
-  <label for="cif_nif" class="col-md-2 col-form-label">Cif/Nif</label>
+  {{ Form::label('cif_nif', 'Cif/Nif', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-10 {{ $errors->has('cif_nif') ? 'error' : '' }}">
     {{ Form::text('cif_nif', null, ['class' =>"form-control"] )}}
   </div>
 
-  <label for="forma_juridica_id" class="col-md-2 col-form-label">Forma Jurídica</label>
+  {{ Form::label('forma_juridica_id', 'Forma Jurídica', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-10 {{ $errors->has('forma_juridica_id') ? 'error' : '' }}">
     {{ Form::text('forma_juridica_id', null, ['class' =>"form-control"] )}}
   </div>
 
-  <label for="direccion" class="col-md-2 col-form-label">Dirección</label>
+  {{ Form::label('direccion', 'Dirección', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-7 {{ $errors->has('direccion') ? 'error' : '' }}">
     {{ Form::text('direccion', null, ['class' =>"form-control"] )}}
   </div>
 
-  <label for="cp" class="col-md-1 col-form-label">CP.</label>
+  {{ Form::label('cp', 'CP.', ['class' =>"col-md-1"]) }}
   <div class="form-group col-md-2 {{ $errors->has('cp') ? 'error' : '' }}">
     {{ Form::number('cp', null, ['class' =>"form-control"] )}}
   </div>
 
-  <label for="poblacion" class="col-md-2 col-form-label">Población</label>
+  {{ Form::label('poblacion', 'Población', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-4 {{ $errors->has('poblacion') ? 'error' : '' }}">
     {{ Form::text('poblacion', null, ['class' =>"form-control"] )}}
   </div>
 
-  <label for="provincia" class="col-md-2 col-form-label">Provincia</label>
+  {{ Form::label('provincia', 'Provincia', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-4 {{ $errors->has('provincia') ? 'error' : '' }}">
     {{ Form::select('provincia', $provincias, null, ['class'=>"form-control", 'placeholder' => ''])}}
   </div>
 
-  <label for="telefono_1" class="col-md-2 col-form-label">Teléfono 1</label>
+  {{ Form::label('telefono_1', 'Teléfono 1', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-4 {{ $errors->has('telefono_1') ? 'error' : '' }}">
     {{ Form::text('telefono_1', null, ['class' =>"form-control"] )}}
   </div>
 
-  <label for="telefono_2" class="col-md-2 col-form-label">Teléfono 2</label>
+  {{ Form::label('telefono_2', 'Teléfono 2', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-4 {{ $errors->has('telefono_2') ? 'error' : '' }}">
     {{ Form::text('telefono_2', null, ['class' =>"form-control"] )}}
   </div>
 
-  <label for="email" class="col-md-2 col-form-label">Email</label>
+  {{ Form::label('email', 'Email', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-10 {{ $errors->has('email') ? 'error' : '' }}">
     {{ Form::text('email', null, ['class' =>"form-control"] )}}
   </div>
 
-  <label for="pagina_web" class="col-md-2 col-form-label">Página Web</label>
+  {{ Form::label('pagina_web', 'Página Web', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-10 {{ $errors->has('pagina_web') ? 'error' : '' }}">
     {{ Form::text('pagina_web', null, ['class' =>"form-control"] )}}
   </div>
 
 </div>
 
-<button type="submit" class="btn btn-primary">Submit</button>
+<button type="submit" class="btn btn-primary">Guardar</button>
