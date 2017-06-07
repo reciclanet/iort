@@ -80,6 +80,9 @@
   {{ Form::label('organizacion_id', 'Organización', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-5 {{ $errors->has('organizacion_id') ? 'error' : '' }}">
     {{ Form::select('organizacion_id', $organizaciones, null, ['class'=>"form-control", 'placeholder' => ''])}}
+    <a href="#createorganizacion" class="btn btn-sm btn-green" data-toggle="modal">
+      <i class="fa fa-plus"></i>&nbsp;Nueva Organizacion
+    </a>
   </div>
 
   {{ Form::label('cargo', 'Cargo', ['class' =>"col-md-2"]) }}

@@ -7,5 +7,5 @@
 {!! Form::open(['action' => ['PersonasController@store']]) !!}
   @include('personas/form')
 {!! Form::close() !!}
-
+@include ('organizaciones.modals.create', ['submitTextButton' => 'Crear'])
 @endsection
