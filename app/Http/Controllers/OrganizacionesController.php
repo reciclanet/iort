@@ -9,6 +9,10 @@ use App\Http\Requests\GuardarOrganizacionRequest;
 
 class OrganizacionesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //
     public function index() {
       $organizaciones = Organizacion::all();

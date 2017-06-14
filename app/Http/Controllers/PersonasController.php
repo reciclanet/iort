@@ -13,6 +13,11 @@ use App\Http\Requests\GuardarPersonaRequest;
 
 class PersonasController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index() {
       $personas = Persona::all();
 
