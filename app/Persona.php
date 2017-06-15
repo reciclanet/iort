@@ -22,6 +22,6 @@ class Persona extends Model
     }
 
     public function provincia() {
-      return $this->belongsTo(Provincia::class, 'cod');
+      return $this->belongsTo(Provincia::class, 'provincia_cod', 'cod');
     }
 }

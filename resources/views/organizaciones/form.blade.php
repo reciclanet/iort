@@ -37,9 +37,9 @@
     {{ Form::text('poblacion', null, ['class' =>"form-control"] )}}
   </div>
 
-  {{ Form::label('provincia', 'Provincia', ['class' =>"col-md-2"]) }}
-  <div class="form-group col-md-4 {{ $errors->has('provincia') ? 'error' : '' }}">
-    {{ Form::select('provincia', $provincias, null, ['class'=>"form-control", 'placeholder' => ''])}}
+  {{ Form::label('provincia_cod', 'Provincia', ['class' =>"col-md-2"]) }}
+  <div class="form-group col-md-4 {{ $errors->has('provincia_cod') ? 'error' : '' }}">
+    {{ Form::select('provincia_cod', $provincias, null, ['class'=>"form-control", 'placeholder' => ''])}}
   </div>
 
   {{ Form::label('telefono_1', 'Teléfono 1', ['class' =>"col-md-2"]) }}
@@ -65,3 +65,4 @@
 </div>
 
 <button type="submit" class="btn btn-primary">Guardar</button>
+<a href="{{ URL::previous() }}" class="btn btn-danger">Cancelar</a>

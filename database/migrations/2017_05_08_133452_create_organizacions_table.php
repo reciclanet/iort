@@ -27,7 +27,7 @@ class CreateOrganizacionsTable extends Migration
             $table->string('direccion')->nullable();
             $table->string('cp')->nullable();
             $table->string('poblacion')->nullable();
-            $table->string('provincia')->nullable();
+            $table->string('provincia_cod')->nullable();
             $table->timestamps();
         });
     }

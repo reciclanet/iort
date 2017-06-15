@@ -24,7 +24,7 @@ class CreatePersonasTable extends Migration
             $table->string('direccion')->nullable();
             $table->string('cp')->nullable();
             $table->string('poblacion')->nullable();
-            $table->string('provincia')->nullable();
+            $table->string('provincia_cod')->nullable();
             $table->string('email')->nullable();
             $table->string('telefono_1')->nullable();
             $table->string('telefono_2')->nullable();
