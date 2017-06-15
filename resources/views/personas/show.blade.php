@@ -2,19 +2,63 @@
 
 @section('content')
   <div>
-    {{ $persona }}
-    @if ($persona->tipoConocido)
-      {{ $persona->tipoConocido->nombre }}
-    @endif
-    @if ($persona->tipoAlta)
-      {{ $persona->tipoAlta->nombre }}
-    @endif
-    @if ($persona->sexo)
-      {{ $persona->sexo->nombre }}
-    @endif
-    @if ($persona->organizacion)
-      {{ $persona->organizacion->razon_social }}
-    @endif
+    <h1>Datos Persona</h1>
+    <dl class="dl-horizontal">
+      <dt>Nombre:</dt>
+      <dd>{{ $persona->nombre }}</dd>
+      <dt>Apellido 1:</dt>
+      <dd>{{ $persona->apellido_1 }}</dd>
+      <dt>Apellido 2:</dt>
+      <dd>{{ $persona->apellido_2 }}</dd>
+      <dt>Fecha de Nacimiento:</dt>
+      <dd>{{ $persona->fecha_nacimiento }}</dd>
+      <dt>Sexo:</dt>
+      <dd>
+        @if ($persona->sexo)
+          {{ $persona->sexo->nombre }}
+        @endif
+      </dd>
+      <dt>Dirección:</dt>
+      <dd>{{ $persona->direccion }}</dd>
+      <dt>CP:</dt>
+      <dd>{{ $persona->cp }}</dd>
+      <dt>Población:</dt>
+      <dd>{{ $persona->poblacion }}</dd>
+      <dt>Provincia:</dt>
+      <dd>
+        @if ($persona->provincia)
+          {{ $persona->provincia->nombre }}
+        @endif
+      </dd>
+      <dt>Teléfono 1:</dt>
+      <dd>{{ $persona->telefono_1 }}</dd>
+      <dt>Teléfono 2:</dt>
+      <dd>{{ $persona->telefono_2 }}</dd>
+      <dt>Email:</dt>
+      <dd>{{ $persona->email }}</dd>
+      <dt>Página Web:</dt>
+      <dd>{{ $persona->pagina_web }}</dd>
+      <dt>¿Cómo nos has conocido?:</dt>
+      <dd>
+        @if ($persona->tipoConocido)
+          {{ $persona->tipoConocido->nombre }}
+        @endif
+      </dd>
+      <dt>Tipo de alta:</dt>
+      <dd>
+        @if ($persona->tipoAlta)
+          {{ $persona->tipoAlta->nombre }}
+        @endif
+      </dd>
+      <dt>Organización:</dt>
+      <dd>
+        @if ($persona->organizacion)
+          {{ $persona->organizacion->razon_social }}
+        @endif
+      </dd>
+      <dt>Cargo:</dt>
+      <dd>{{ $persona->cargo }}</dd>
+    </dl>
   </div>
   <a href="{{ url('personas/' . $persona->id . '/edit')}}" class="btn btn-primary">Editar</a>
 @endsection
