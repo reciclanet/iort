@@ -2,7 +2,7 @@
 
 @section('content')
   <h1>Organizaciones</h1>
-  <a href="{{ url('personas/create')}}" class="btn btn-primary">Nueva</a>
+  <a href="{{ url('organizaciones/create')}}" class="btn btn-primary">Nueva</a>
   <div>
     <ul>
       @foreach ($organizaciones as $organizacion)
