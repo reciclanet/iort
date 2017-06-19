@@ -62,6 +62,11 @@
     {{ Form::text('pagina_web', null, ['class' =>"form-control"] )}}
   </div>
 
+  <div class="form-group col-md-1 {{ $errors->has('autoriza_logo') ? 'error' : '' }}">
+    {{ Form::checkbox('autoriza_logo', 1, null)}}
+  </div>
+  {{ Form::label('autoriza_logo', '¿AUTORIZO EL USO DEL LOGOTIPO DE LA EMPRESA PARA EL USO DE RECICLANET EN LA SECCIÓN DE COLABORADORES DE SU PÁGINA WEB?', ['class' =>"col-md-11"]) }}
+
 </div>
 
 <button type="submit" class="btn btn-primary">Guardar</button>

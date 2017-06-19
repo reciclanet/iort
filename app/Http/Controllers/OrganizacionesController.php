@@ -41,12 +41,14 @@ class OrganizacionesController extends Controller
     }
 
     public function store(GuardarOrganizacionRequest $request) {
+      $request->merge(['autoriza_logo' => ($request->autoriza_logo) ? 1 : 0]);
       Organizacion::create($request->except(['id', 'created_at', 'updated_at']));
 
       return redirect('/organizaciones');
     }
 
     public function update(GuardarOrganizacionRequest $request, Organizacion $organizacion) {
+      $request->merge(['autoriza_logo' => ($request->autoriza_logo) ? 1 : 0]);
       $organizacion->update($request->except(['id', 'created_at', 'updated_at']));
 
       return view ('organizaciones.show', compact('organizacion'));
