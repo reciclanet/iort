@@ -14,4 +14,8 @@ class Organizacion extends Model
     public function provincia() {
       return $this->belongsTo(Provincia::class, 'provincia_cod', 'cod');
     }
+
+    public function lotes(){
+      return $this->hasMany(Lote::class);
+    }
 }

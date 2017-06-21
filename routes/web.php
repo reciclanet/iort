@@ -35,3 +35,5 @@ Route::get('/organizaciones/{organizacion}', 'OrganizacionesController@show');
 Route::get('/organizaciones/{organizacion}/edit', 'OrganizacionesController@edit');
 Route::patch('/organizaciones/{organizacion}', 'OrganizacionesController@update');
 Route::delete('/organizaciones/{organizacion}', 'OrganizacionesController@destroy');
+
+Route::get('/lotes/personas/{persona}', 'LoteController@create');

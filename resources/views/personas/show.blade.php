@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div>
+  <div class="col-sm-6">
     <h1>Datos Persona</h1>
     <dl class="dl-horizontal">
       <dt>Nombre:</dt>
@@ -60,5 +60,18 @@
       <dd>{{ $persona->cargo }}</dd>
     </dl>
   </div>
-  <a href="{{ url('personas/' . $persona->id . '/edit')}}" class="btn btn-primary">Editar</a>
+  <div class="col-sm-6">
+    <h2>Lotes</h2>
+    @foreach ($persona->lotes as $lote)
+
+    @endforeach
+  </div>
+  <div style="clear:both;">
+    <div class="col-sm-6">
+      <a href="{{ url('personas/' . $persona->id . '/edit')}}" class="btn btn-primary">Editar</a>
+    </div>
+    <div class="col-sm-6">
+      <a href="{{ URL::action('LoteController@create', ['personas' => $persona]) }}" class="btn btn-primary">Nuevo</a>
+    </div>
+  </div>
 @endsection

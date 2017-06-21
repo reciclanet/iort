@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div>
+  <div class="col-sm-6">
     <h1>Datos Persona</h1>
     <dl class="dl-horizontal">
       <dt>Razón Social:</dt>
@@ -45,6 +45,11 @@
         @endif
       </dd>
     </dl>
+  </div>
+  <div class="col-sm-6">
+    @foreach ($organizacion->lotes as $lote)
+
+    @endforeach
   </div>
   <a href="{{ url('organizaciones/' . $organizacion->id . '/edit')}}" class="btn btn-primary">Editar</a>
 @endsection
