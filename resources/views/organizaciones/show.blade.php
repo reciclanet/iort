@@ -45,7 +45,6 @@
         @endif
       </dd>
     </dl>
-    {{ $organizacion }}
   </div>
   <a href="{{ url('organizaciones/' . $organizacion->id . '/edit')}}" class="btn btn-primary">Editar</a>
 @endsection
