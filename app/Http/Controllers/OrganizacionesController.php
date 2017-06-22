@@ -20,7 +20,7 @@ class OrganizacionesController extends Controller
       return view( 'organizaciones.index', compact('organizaciones'));
     }
 
-    protected function formulario(string $vista, Organizacion $organizacion) {
+    protected function formulario($vista, Organizacion $organizacion) {
       $provincias = Provincia::pluck('nombre', 'cod');
 
       return view ($vista,

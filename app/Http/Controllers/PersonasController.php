@@ -24,7 +24,7 @@ class PersonasController extends Controller
       return view( 'personas.index', compact('personas'));
     }
 
-    protected function formulario(string $vista, Persona $persona) {
+    protected function formulario($vista, Persona $persona) {
       $tipos_alta = TipoAlta::pluck('nombre', 'id');
       $tipos_conocido = TipoConocido::pluck('nombre', 'id');
       $sexos = Sexo::pluck('nombre', 'id');
