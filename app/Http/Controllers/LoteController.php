@@ -11,8 +11,8 @@ class LoteController extends Controller
         $this->middleware('auth');
     }
 
-    public function create($id_persona = null) {
-      dd($id_persona);
+    public function create($tipo, $id) {
+      dd($tipo, $id);
       $persona = Persona::create($request->except(['id', 'created_at', 'updated_at']));
 
       return view ('personas.show', compact('persona'));

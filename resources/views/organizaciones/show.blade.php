@@ -47,9 +47,18 @@
     </dl>
   </div>
   <div class="col-sm-6">
+    <h2>Lotes</h2>
     @foreach ($organizacion->lotes as $lote)
 
     @endforeach
   </div>
-  <a href="{{ url('organizaciones/' . $organizacion->id . '/edit')}}" class="btn btn-primary">Editar</a>
+
+  <div style="clear:both;">
+    <div class="col-sm-6">
+      <a href="{{ url('organizaciones/' . $organizacion->id . '/edit')}}" class="btn btn-primary">Editar</a>
+    </div>
+    <div class="col-sm-6">
+      <a href="{{ URL::action('LoteController@create', ['typo'=> 'organizacion', 'id' => $organizacion]) }}" class="btn btn-primary">Nuevo</a>
+    </div>
+  </div>
 @endsection

@@ -71,7 +71,7 @@
       <a href="{{ url('personas/' . $persona->id . '/edit')}}" class="btn btn-primary">Editar</a>
     </div>
     <div class="col-sm-6">
-      <a href="{{ URL::action('LoteController@create', ['personas' => $persona]) }}" class="btn btn-primary">Nuevo</a>
+      <a href="{{ URL::action('LoteController@create', ['typo'=> 'persona', 'id' => $persona]) }}" class="btn btn-primary">Nuevo</a>
     </div>
   </div>
 @endsection
