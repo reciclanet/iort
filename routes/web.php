@@ -36,4 +36,7 @@ Route::get('/organizaciones/{organizacion}/edit', 'OrganizacionesController@edit
 Route::patch('/organizaciones/{organizacion}', 'OrganizacionesController@update');
 Route::delete('/organizaciones/{organizacion}', 'OrganizacionesController@destroy');
 
-Route::get('/lotes/{tipo}/{id}', 'LoteController@create');
+Route::post('/lotes/{tipo}/{id}', 'LoteController@store');
+Route::get('/lotes/{lote}', 'LoteController@show');
+Route::get('/lotes/{lote}/edit', 'LoteController@edit');
+Route::patch('/lotes/{lote}', 'LoteController@update');

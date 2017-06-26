@@ -11,4 +11,8 @@ class Lote extends Model
   public function organizacion() {
     return $this->belongsTo(Organizacion::class);
   }
+
+  public function materiales(){
+    return $this->hasMany(LoteMaterial::class);
+  }
 }

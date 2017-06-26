@@ -71,7 +71,9 @@
       <a href="{{ url('personas/' . $persona->id . '/edit')}}" class="btn btn-primary">Editar</a>
     </div>
     <div class="col-sm-6">
-      <a href="{{ URL::action('LoteController@create', ['typo'=> 'persona', 'id' => $persona]) }}" class="btn btn-primary">Nuevo</a>
+      {!! Form::model($persona, ['action' => ['LoteController@store', 'persona',$persona]]) !!}
+        <button type="submit" class="btn btn-primary">Nuevo</button>
+      {!! Form::close() !!}
     </div>
   </div>
 @endsection
