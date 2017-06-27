@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Lote;
+use App\LoteMaterial;
+use App\Material;
 use Illuminate\Http\Request;
 
 class LoteController extends Controller
@@ -39,11 +41,32 @@ class LoteController extends Controller
     }
 
     public function edit(Lote $lote) {
-      return view('lotes.edit', compact('lote'));
+      $materiales = Material::pluck('nombre', 'id');
+      return view ('lotes.edit', compact('lote', 'materiales'));
     }
 
     public function update(Lote $lote) {
-      $lote->update(request()->except(['id', 'created_at', 'updated_at']));
+      $descripcion = request()->input('descripcion');
+      if (empty($descripcion)) {
+        $descripcion = '';
+      }
+      $lote->update(['descripcion' => $descripcion]);
+
+      $material_id = request()->input('material_id');
+      $cantidad = request()->input('cantidad');      
+      if (!empty($material_id) && !empty($cantidad)) {
+        $loteMaterial = new LoteMaterial(request(['material_id', 'cantidad']));
+        $loteMaterial->lote_id = $lote->id;
+        //$loteMaterial->material_id = request(['material_id']);
+        //$loteMaterial->cantidad = request(['cantidad']);
+        $loteMaterial->material_estado_id = 1;
+        $loteMaterial->marca = "";
+        $loteMaterial->modelo = '';
+        $loteMaterial->tag = '';
+        $loteMaterial->borrado_seguro = !empty(request(['borrado_seguro']));
+        $loteMaterial->foto = '';
+        $loteMaterial->save();
+      }
 
       return view ('lotes.show', compact('lote'));
     }

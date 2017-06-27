@@ -48,9 +48,11 @@
   </div>
   <div class="col-sm-6">
     <h2>Lotes</h2>
-    @foreach ($organizacion->lotes as $lote)
-
-    @endforeach
+    <ul>
+      @foreach ($organizacion->lotes as $lote)
+        <li><a href="{{ url('lotes/' . $lote->id )}}">{{ $lote->created_at->format('d/m/Y') . ' - ' . $lote->descripcion }}</a></li>
+      @endforeach
+    </ul>
   </div>
 
   <div style="clear:both;">
