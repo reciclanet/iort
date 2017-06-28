@@ -14,6 +14,9 @@
 Route::get('/about', function () {
     return view('welcome');
 });
+Route::get('/informe', function () {
+    return view('template.informe');
+});
 
 Auth::routes();
 
