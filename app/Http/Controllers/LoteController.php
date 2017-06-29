@@ -19,6 +19,11 @@ class LoteController extends Controller
       return view ('lotes.show', compact('lote'));
     }
 
+    public function showInforme(Lote $lote) {
+      $responsable = $lote->responsable();
+      return view ('lotes.informe', compact('lote','responsable'));
+    }
+
     public function store($tipo, $id) {
       //dd($tipo, $id);
       //$persona = Persona::create($request->except(['id', 'created_at', 'updated_at']));
@@ -53,7 +58,7 @@ class LoteController extends Controller
       $lote->update(['descripcion' => $descripcion]);
 
       $material_id = request()->input('material_id');
-      $cantidad = request()->input('cantidad');      
+      $cantidad = request()->input('cantidad');
       if (!empty($material_id) && !empty($cantidad)) {
         $loteMaterial = new LoteMaterial(request(['material_id', 'cantidad']));
         $loteMaterial->lote_id = $lote->id;

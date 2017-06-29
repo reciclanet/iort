@@ -14,9 +14,6 @@
 Route::get('/about', function () {
     return view('welcome');
 });
-Route::get('/informe', function () {
-    return view('template.informe');
-});
 
 Auth::routes();
 
@@ -41,5 +38,6 @@ Route::delete('/organizaciones/{organizacion}', 'OrganizacionesController@destro
 
 Route::post('/lotes/{tipo}/{id}', 'LoteController@store');
 Route::get('/lotes/{lote}', 'LoteController@show');
+Route::get('/lotes/{lote}/informe', 'LoteController@showInforme');
 Route::get('/lotes/{lote}/edit', 'LoteController@edit');
 Route::patch('/lotes/{lote}', 'LoteController@update');

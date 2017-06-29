@@ -12,6 +12,14 @@ class Lote extends Model
     return $this->belongsTo(Organizacion::class);
   }
 
+  public function responsable() {
+    if (isset($this->persona)) {
+      return $this->persona;
+    } else if (isset($this->organizacion)){
+      return $this->organizacion;
+    }
+  }
+
   public function materiales(){
     return $this->hasMany(LoteMaterial::class);
   }

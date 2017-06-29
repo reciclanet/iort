@@ -14,9 +14,7 @@
   <div style="clear:both;">
     <div class="col-sm-6">
       <a href="{{ url('lotes/' . $lote->id . '/edit')}}" class="btn btn-primary">Editar</a>
-    </div>
-    <div class="col-sm-6">
-
+      <a href="{{ url('lotes/' . $lote->id . '/informe')}}" class="btn btn-primary" target="_blank">Imprimir</a>
     </div>
   </div>
 @endsection
