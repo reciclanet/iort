@@ -4,7 +4,7 @@
 
 <h1>Editar</h1>
 
-{!! Form::model($organizacion, ['action' => ['OrganizacionesController@update', $organizacion->id], 'method' => 'PATCH']) !!}
+{!! Form::model($organizacion, ['action' => ['OrganizacionesController@update', $organizacion->id], 'method' => 'PATCH', 'files'=>true]) !!}
   @include('organizaciones/form')
 {!! Form::close() !!}
 

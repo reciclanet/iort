@@ -42,15 +42,43 @@ class OrganizacionesController extends Controller
 
     public function store(GuardarOrganizacionRequest $request) {
       $request->merge(['autoriza_logo' => ($request->autoriza_logo) ? 1 : 0]);
-      Organizacion::create($request->except(['id', 'created_at', 'updated_at']));
+      $organizacion = Organizacion::create($request->except(['id', 'created_at', 'updated_at', 'logo']));
+
+      if ($organizacion->autoriza_logo && $fichero = $request->file('logo')) {
+        $imagen = $organizacion->id . '.' .
+          $fichero->getClientOriginalExtension();
+
+        $fichero->move(
+            base_path() . '/public/images/logos/', $imagen);
+
+        $organizacion->logo = $imagen;
+        $organizacion->save();
+      }
 
       return redirect('/organizaciones');
     }
 
     public function update(GuardarOrganizacionRequest $request, Organizacion $organizacion) {
       $request->merge(['autoriza_logo' => ($request->autoriza_logo) ? 1 : 0]);
-      $organizacion->update($request->except(['id', 'created_at', 'updated_at']));
+      $organizacion->update($request->except(['id', 'created_at', 'updated_at', 'logo']));
+
+      if ($organizacion->autoriza_logo && $fichero = $request->file('logo')) {
+        $imagen = $organizacion->id . '.' .
+          $fichero->getClientOriginalExtension();
+
+        $fichero->move(
+            base_path() . '/public/images/logos/', $imagen);
+
+        $organizacion->logo = $imagen;
+        $organizacion->save();
+      }
 
       return view ('organizaciones.show', compact('organizacion'));
+    }
+
+    public function colaboradores() {
+      $organizaciones = Organizacion::all();
+
+      return view( 'organizaciones.colaboradores', compact('organizaciones'));
     }
 }

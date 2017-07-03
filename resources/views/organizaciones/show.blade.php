@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="col-sm-6">
-    <h1>Datos Persona</h1>
+    <h1>Datos Organización</h1>
     <dl class="dl-horizontal">
       <dt>Razón Social:</dt>
       <dd>{{ $organizacion->razon_social }}</dd>
@@ -42,6 +42,12 @@
           {{ "Sí" }}
         @else
           {{ "No" }}
+        @endif
+      </dd>
+      <dt></dt>
+      <dd>
+        @if ($organizacion->logo)
+          <img src={{ '/images/logos/' . $organizacion->logo }} width="200"/>
         @endif
       </dd>
     </dl>

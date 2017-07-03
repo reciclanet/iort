@@ -158,9 +158,9 @@
 			<tr class="hr"><td colspan="3"></td></tr>
 			@foreach ($lote->materiales as $material)
 				<tr>
-					<td>{{ $material->material->nombre }}</td>
-					<td>{{ ($material->borrado_seguro)? 'Sí' : 'No' }}</td>
-					<td>{{ $material->cantidad }}</td>
+					<td class="text-center">{{ $material->material->nombre }}</td>
+					<td class="text-center">{{ ($material->borrado_seguro)? 'Sí' : 'No' }}</td>
+					<td class="text-center">{{ $material->cantidad }}</td>
 				</tr>
 			@endforeach
 		</table>
