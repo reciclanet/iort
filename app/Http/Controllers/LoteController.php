@@ -47,7 +47,8 @@ class LoteController extends Controller
 
     public function edit(Lote $lote) {
       $materiales = Material::pluck('nombre', 'id');
-      return view ('lotes.edit', compact('lote', 'materiales'));
+      $edicion = true;
+      return view ('lotes.edit', compact('lote', 'materiales', 'edicion'));
     }
 
     public function update(Lote $lote) {

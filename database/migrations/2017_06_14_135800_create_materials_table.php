@@ -36,6 +36,9 @@ class CreateMaterialsTable extends Migration
           ['id' => 13, 'nombre' => 'Calculadora', 'peso' => 1000],
           ['id' => 14, 'nombre' => 'Ratón', 'peso' => 1000],
           ['id' => 15, 'nombre' => 'Escaner', 'peso' => 1000],
+          ['id' => 16, 'nombre' => 'Switch', 'peso' => 1000],
+          ['id' => 17, 'nombre' => 'Sai', 'peso' => 1000],
+          ['id' => 18, 'nombre' => 'Cámara Vigilancia', 'peso' => 1000],
         ];
 
         DB::table('materiales')->insert($materiales);

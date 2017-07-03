@@ -7,9 +7,7 @@
     {{ Form::text('descripcion', null, ['class' =>"form-control"] )}}
   </div>
 
-  {{ $edicion = true }}
   @include ('lote_material.index')
-
 
 </div>
 

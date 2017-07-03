@@ -55,7 +55,7 @@ class OrganizacionesController extends Controller
         $organizacion->save();
       }
 
-      return redirect('/organizaciones');
+      return view ('organizaciones.show', compact('organizacion'));
     }
 
     public function update(GuardarOrganizacionRequest $request, Organizacion $organizacion) {
