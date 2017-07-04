@@ -29,7 +29,7 @@ class PersonasController extends Controller
       $tipos_conocido = TipoConocido::pluck('nombre', 'id');
       $sexos = Sexo::pluck('nombre', 'id');
       $organizaciones = Organizacion::pluck('razon_social', 'id');
-      $provincias = Provincia::pluck('nombre', 'cod');
+      $provincias = Provincia::orderBy('nombre', 'asc')->pluck('nombre', 'cod');
 
       return view ($vista,
         compact('persona',

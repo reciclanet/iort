@@ -15,13 +15,13 @@ class OrganizacionesController extends Controller
     }
     //
     public function index() {
-      $organizaciones = Organizacion::all();
+      $organizaciones = Organizacion::orderBy('razon_social', 'asc')->get();
 
       return view( 'organizaciones.index', compact('organizaciones'));
     }
 
     protected function formulario($vista, Organizacion $organizacion) {
-      $provincias = Provincia::pluck('nombre', 'cod');
+      $provincias = Provincia::orderBy('nombre', 'asc')->pluck('nombre', 'cod');
 
       return view ($vista,
         compact('organizacion',
