@@ -26,6 +26,6 @@ class Persona extends Model
     }
 
     public function lotes(){
-      return $this->hasMany(Lote::class);
+      return $this->hasMany(Lote::class)->orderBy('fecha');
     }
 }

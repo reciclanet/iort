@@ -6,6 +6,7 @@ use App\Lote;
 use App\LoteMaterial;
 use App\Material;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class LoteController extends Controller
 {
@@ -29,6 +30,7 @@ class LoteController extends Controller
       //$persona = Persona::create($request->except(['id', 'created_at', 'updated_at']));
 
       $lote = new Lote;
+      $lote->fecha = Carbon::now();
       $lote->descripcion = '';
       if ($tipo == 'persona') {
         $lote->persona_id = $id;
@@ -56,7 +58,7 @@ class LoteController extends Controller
       if (empty($descripcion)) {
         $descripcion = '';
       }
-      $lote->update(['descripcion' => $descripcion]);
+      $lote->update(['descripcion' => $descripcion, 'fecha' => request()->input('fecha')]);
 
       $material_id = request()->input('material_id');
       $cantidad = request()->input('cantidad');

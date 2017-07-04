@@ -4,6 +4,8 @@
   <div class="col-sm-12">
     <h1>Datos Lote</h1>
     <dl class="dl-horizontal">
+      <dt>Fecha:</dt>
+      <dd>{{ $lote->fecha->format('d/m/Y') }}</dd>
       <dt>Descripcion:</dt>
       <dd>{{ $lote->descripcion }}</dd>
     </dl>

@@ -23,4 +23,9 @@ class Lote extends Model
   public function materiales(){
     return $this->hasMany(LoteMaterial::class);
   }
+
+  public function getDates()
+    {
+        return ['created_at', 'updated_at', 'fecha'];
+    }
 }

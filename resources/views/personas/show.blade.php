@@ -64,7 +64,7 @@
     <h2>Lotes</h2>
     <ul>
       @foreach ($persona->lotes as $lote)
-        <li><a href="{{ url('lotes/' . $lote->id )}}">{{ $lote->created_at->format('d/m/Y') . ' - ' . $lote->descripcion }}</a></li>
+        <li><a href="{{ url('lotes/' . $lote->id )}}">{{ $lote->fecha->format('d/m/Y') . ' - ' . $lote->descripcion }}</a></li>
       @endforeach
     </ul>
   </div>
