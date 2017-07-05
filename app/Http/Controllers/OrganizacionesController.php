@@ -42,9 +42,9 @@ class OrganizacionesController extends Controller
 
     public function store(GuardarOrganizacionRequest $request) {
       $request->merge(['autoriza_logo' => ($request->autoriza_logo) ? 1 : 0]);
-      $organizacion = Organizacion::create($request->except(['id', 'created_at', 'updated_at', 'logo']));
+      $organizacion = Organizacion::create($request->except(['id', 'created_at', 'updated_at', 'logo_file']));
 
-      if ($organizacion->autoriza_logo && $fichero = $request->file('logo')) {
+      if ($organizacion->autoriza_logo && $fichero = $request->file('logo_file')) {
         $imagen = $organizacion->id . '.' .
           $fichero->getClientOriginalExtension();
 
@@ -60,9 +60,9 @@ class OrganizacionesController extends Controller
 
     public function update(GuardarOrganizacionRequest $request, Organizacion $organizacion) {
       $request->merge(['autoriza_logo' => ($request->autoriza_logo) ? 1 : 0]);
-      $organizacion->update($request->except(['id', 'created_at', 'updated_at', 'logo']));
+      $organizacion->update($request->except(['id', 'created_at', 'updated_at', 'logo_file']));
 
-      if ($organizacion->autoriza_logo && $fichero = $request->file('logo')) {
+      if ($organizacion->autoriza_logo && $fichero = $request->file('logo_file')) {
         $imagen = $organizacion->id . '.' .
           $fichero->getClientOriginalExtension();
 

@@ -27,7 +27,7 @@ class GuardarOrganizacionRequest extends FormRequest
           'razon_social' => 'required',
           'email' => 'nullable|email',
           'pagina_web' => 'nullable|url',
-          'logo'       => 'nullable|mimes:jpg,jpeg,png',
+          'logo_file'       => 'nullable|mimes:jpg,jpeg,png',
         ];
     }
 }

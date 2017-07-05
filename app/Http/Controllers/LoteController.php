@@ -71,7 +71,7 @@ class LoteController extends Controller
         $loteMaterial->marca = "";
         $loteMaterial->modelo = '';
         $loteMaterial->tag = '';
-        $loteMaterial->borrado_seguro = !empty(request(['borrado_seguro']));
+        $loteMaterial->borrado_seguro = !empty(request()->input('borrado_seguro')) ? request()->input('borrado_seguro') : 0;
         $loteMaterial->foto = '';
         $loteMaterial->save();
       }

@@ -68,8 +68,9 @@
   {{ Form::label('autoriza_logo', '¿AUTORIZO EL USO DEL LOGOTIPO DE LA EMPRESA PARA EL USO DE RECICLANET EN LA SECCIÓN DE COLABORADORES DE SU PÁGINA WEB?', ['class' =>"col-md-11"]) }}
 
   {{ Form::label('logo', 'Logo', ['class' =>"col-md-2"]) }}
+  {{ Form::hidden('logo') }}
   <div class="form-group col-md-10 {{ $errors->has('logo') ? 'error' : '' }}">
-    {{ Form::file('logo', null, ['class' =>"form-control"] )}}
+    {{ Form::file('logo_file', null, ['class' =>"form-control"] )}}
   </div>
 </div>
 
