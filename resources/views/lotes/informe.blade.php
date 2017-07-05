@@ -40,6 +40,13 @@
 			text-align: center;
 		}
 
+		.entregadoRecibido {
+			position: absolute;
+			bottom: 100px;
+	    left: 0;
+	    right: 0;
+		}
+
     .text-center {
       text-align: center;
     }
@@ -54,6 +61,10 @@
 
 		.tablaDatosPersonales td {
 			width: 25%;
+		}
+
+		.borde {
+	    border: 1px solid black;
 		}
 
 		.negrita {
@@ -117,31 +128,31 @@
 				</td>
 				<td colspan="2" style="text-align: right;">Fecha: {{ $lote->created_at->format('d/m/Y') }}</td>
 			</tr>
-			<tr>
+			<tr class="borde">
 				<td class="negrita">CONTACTO</td>
 				<td colspan="3">{{ (isset($lote->persona_id)) ? $responsable->nombre : $responsable->razon_social }}</td>
 			</tr>
-			<tr>
+			<tr class="borde">
 				<td class="negrita">DIRECCIÓN</td>
 				<td colspan="3"> {{ $responsable->direccion }}</td>
 			</tr>
-			<tr>
+			<tr class="borde">
 				<td class="negrita">CP</td>
 				<td>{{ $responsable->cp }}</td>
 				<td class="negrita">POBLACIÓN</td>
 				<td>{{ $responsable->poblacion }}</td>
 			</tr>
-			<tr>
+			<tr class="borde">
 				<td class="negrita">TELÉFONO 1</td>
 				<td>{{ $responsable->telefono_1 }}</td>
 				<td class="negrita">TELÉFONO 2</td>
 				<td>{{ $responsable->telefono_2 }}</td>
 			</tr>
-			<tr>
+			<tr class="borde">
 				<td class="negrita">PÁGINA WEB</td>
 				<td colspan="3">{{ $responsable->pagina_web }}</td>
 			</tr>
-			<tr>
+			<tr class="borde">
 				<td class="negrita">EMAIL</td>
 				<td colspan="3">{{ $responsable->email }}</td>
 			</tr>
@@ -162,11 +173,12 @@
 					<td class="text-center">{{ ($material->borrado_seguro)? 'Sí' : 'No' }}</td>
 					<td class="text-center">{{ $material->cantidad }}</td>
 				</tr>
+				<tr class="hr"><td colspan="3"></td></tr>
 			@endforeach
 		</table>
 	</div>
 
-	<div>
+	<div class="entregadoRecibido">
 		<table>
 			<tr>
 				<td>Recibido por:</td>
