@@ -8,6 +8,8 @@
       <dd>{{ $lote->fecha->format('d/m/Y') }}</dd>
       <dt>Descripcion:</dt>
       <dd>{{ $lote->descripcion }}</dd>
+      <dt>Tipo:</dt>
+      <dd>{{ $lote->tipoLote->nombre }}</dd>
     </dl>
   </div>
 

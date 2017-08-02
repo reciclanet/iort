@@ -11,6 +11,10 @@ class Lote extends Model
   public function organizacion() {
     return $this->belongsTo(Organizacion::class);
   }
+  
+  public function tipoLote() {
+    return $this->belongsTo(TipoLote::class);
+  }
 
   public function responsable() {
     if (isset($this->persona)) {

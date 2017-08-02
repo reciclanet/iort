@@ -1,4 +1,4 @@
-<h3>Lote material</h3>
+<h3 class="col-md-12">Lote material</h3>
 <div>
   <table class="table">
     <thead>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Lote;
 use App\LoteMaterial;
 use App\Material;
+use App\TipoLote;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -49,8 +50,9 @@ class LoteController extends Controller
 
     public function edit(Lote $lote) {
       $materiales = Material::pluck('nombre', 'id');
+      $tiposLote = TipoLote::pluck('nombre', 'id');
       $edicion = true;
-      return view ('lotes.edit', compact('lote', 'materiales', 'edicion'));
+      return view ('lotes.edit', compact('lote', 'materiales', 'edicion', 'tiposLote'));
     }
 
     public function update(Lote $lote) {
@@ -58,7 +60,7 @@ class LoteController extends Controller
       if (empty($descripcion)) {
         $descripcion = '';
       }
-      $lote->update(['descripcion' => $descripcion, 'fecha' => request()->input('fecha')]);
+      $lote->update(['descripcion' => $descripcion, 'fecha' => request()->input('fecha'), 'tipo_lote_id' => request()->input('tipo_lote_id')]);
 
       $material_id = request()->input('material_id');
       $cantidad = request()->input('cantidad');
