@@ -13,9 +13,9 @@ class OrganizacionLogo extends Migration
      */
     public function up()
     {
-      Schema::table('organizaciones', function (Blueprint $table) {
-         $table->string('logo')->nullable();
-      });
+        Schema::table('organizaciones', function (Blueprint $table) {
+            $table->string('logo')->nullable();
+        });
     }
 
     /**

@@ -5,27 +5,33 @@ namespace App;
 class Persona extends Model
 {
     //
-    public function tipoConocido() {
-      return $this->belongsTo(TipoConocido::class);
+    public function tipoConocido()
+    {
+        return $this->belongsTo(TipoConocido::class);
     }
 
-    public function tipoAlta() {
-      return $this->belongsTo(TipoAlta::class);
+    public function tipoAlta()
+    {
+        return $this->belongsTo(TipoAlta::class);
     }
 
-    public function sexo() {
-      return $this->belongsTo(Sexo::class);
+    public function sexo()
+    {
+        return $this->belongsTo(Sexo::class);
     }
 
-    public function organizacion() {
-      return $this->belongsTo(Organizacion::class);
+    public function organizacion()
+    {
+        return $this->belongsTo(Organizacion::class);
     }
 
-    public function provincia() {
-      return $this->belongsTo(Provincia::class, 'provincia_cod', 'cod');
+    public function provincia()
+    {
+        return $this->belongsTo(Provincia::class, 'provincia_cod', 'cod');
     }
 
-    public function lotes(){
-      return $this->hasMany(Lote::class)->orderBy('fecha');
+    public function lotes()
+    {
+        return $this->hasMany(Lote::class)->orderBy('fecha');
     }
 }

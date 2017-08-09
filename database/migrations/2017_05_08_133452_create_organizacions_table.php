@@ -18,7 +18,7 @@ class CreateOrganizacionsTable extends Migration
             $table->string('razon_social');
             $table->string('actividad_principal')->nullable();
             $table->string('cif_nif')->nullable();
-            $table->smallInteger('forma_juridica_id' )->unsigned()->nullable();
+            $table->smallInteger('forma_juridica_id')->unsigned()->nullable();
             $table->string('email')->nullable();
             $table->string('telefono_1')->nullable();
             $table->string('telefono_2')->nullable();

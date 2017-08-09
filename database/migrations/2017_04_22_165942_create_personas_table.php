@@ -29,9 +29,9 @@ class CreatePersonasTable extends Migration
             $table->string('telefono_1')->nullable();
             $table->string('telefono_2')->nullable();
             $table->string('pagina_web')->nullable();
-            $table->smallInteger('tipo_conocido_id' )->unsigned()->nullable();
-            $table->smallInteger('tipo_alta_id' )->unsigned()->nullable();
-            $table->integer('organizacion_id' )->unsigned()->nullable();
+            $table->smallInteger('tipo_conocido_id')->unsigned()->nullable();
+            $table->smallInteger('tipo_alta_id')->unsigned()->nullable();
+            $table->integer('organizacion_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

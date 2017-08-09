@@ -17,72 +17,81 @@ class LoteController extends Controller
     }
 
 
-    public function show(Lote $lote) {
-      return view ('lotes.show', compact('lote'));
+    public function show(Lote $lote)
+    {
+        return view('lotes.show', compact('lote'));
     }
 
-    public function showInforme(Lote $lote) {
-      $responsable = $lote->responsable();
-      return view ('lotes.informe', compact('lote','responsable'));
+    public function showInforme(Lote $lote)
+    {
+        $responsable = $lote->responsable();
+
+        return view('lotes.informe', compact('lote', 'responsable'));
     }
 
-    public function store($tipo, $id) {
-      //dd($tipo, $id);
-      //$persona = Persona::create($request->except(['id', 'created_at', 'updated_at']));
+    public function store($tipo, $id)
+    {
+        //dd($tipo, $id);
+        //$persona = Persona::create($request->except(['id', 'created_at', 'updated_at']));
 
-      $lote = new Lote;
-      $lote->fecha = Carbon::now();
-      $lote->descripcion = '';
-      if ($tipo == 'persona') {
-        $lote->persona_id = $id;
-      } else if ($tipo == 'organizacion') {
-        $lote->organizacion_id = $id;
-      } else {
-        dd();
-      }
+        $lote = new Lote;
+        $lote->fecha = Carbon::now();
+        $lote->descripcion = '';
+        if ($tipo == 'persona') {
+            $lote->persona_id = $id;
+        } elseif ($tipo == 'organizacion') {
+            $lote->organizacion_id = $id;
+        } else {
+            dd();
+        }
 
-      if ($lote->save()) {
-        return redirect('/lotes/'.$lote->id .'/edit');
-      } else {
-        dd();
-      }
+        if ($lote->save()) {
+            return redirect('/lotes/'.$lote->id .'/edit');
+        } else {
+            dd();
+        }
     }
 
-    public function edit(Lote $lote) {
-      $materiales = Material::pluck('nombre', 'id');
-      $tiposLote = TipoLote::pluck('nombre', 'id');
-      $edicion = true;
-      return view ('lotes.edit', compact('lote', 'materiales', 'edicion', 'tiposLote'));
+    public function edit(Lote $lote)
+    {
+        $materiales = Material::pluck('nombre', 'id');
+        $tiposLote = TipoLote::pluck('nombre', 'id');
+        $edicion = true;
+
+        return view('lotes.edit', compact('lote', 'materiales', 'edicion', 'tiposLote'));
     }
 
-    public function update(Lote $lote) {
-      $descripcion = request()->input('descripcion');
-      if (empty($descripcion)) {
-        $descripcion = '';
-      }
-      $lote->update(['descripcion' => $descripcion, 'fecha' => request()->input('fecha'), 'tipo_lote_id' => request()->input('tipo_lote_id')]);
+    public function update(Lote $lote)
+    {
+        $descripcion = request()->input('descripcion');
+        if (empty($descripcion)) {
+            $descripcion = '';
+        }
+        $lote->update(['descripcion' => $descripcion, 'fecha' => request()->input('fecha'), 'tipo_lote_id' => request()->input('tipo_lote_id')]);
 
-      $material_id = request()->input('material_id');
-      $cantidad = request()->input('cantidad');
-      if (!empty($material_id) && !empty($cantidad)) {
-        $loteMaterial = new LoteMaterial(request(['material_id', 'cantidad']));
-        $loteMaterial->lote_id = $lote->id;
-        //$loteMaterial->material_id = request(['material_id']);
-        //$loteMaterial->cantidad = request(['cantidad']);
-        $loteMaterial->material_estado_id = 1;
-        $loteMaterial->marca = "";
-        $loteMaterial->modelo = '';
-        $loteMaterial->tag = '';
-        $loteMaterial->borrado_seguro = !empty(request()->input('borrado_seguro')) ? request()->input('borrado_seguro') : 0;
-        $loteMaterial->foto = '';
-        $loteMaterial->save();
-      }
+        $material_id = request()->input('material_id');
+        $cantidad = request()->input('cantidad');
+        if (!empty($material_id) && !empty($cantidad)) {
+            $loteMaterial = new LoteMaterial(request(['material_id', 'cantidad']));
+            $loteMaterial->lote_id = $lote->id;
+            //$loteMaterial->material_id = request(['material_id']);
+            //$loteMaterial->cantidad = request(['cantidad']);
+            $loteMaterial->material_estado_id = 1;
+            $loteMaterial->marca = "";
+            $loteMaterial->modelo = '';
+            $loteMaterial->tag = '';
+            $loteMaterial->borrado_seguro = !empty(request()->input('borrado_seguro')) ? request()->input('borrado_seguro') : 0;
+            $loteMaterial->foto = '';
+            $loteMaterial->save();
+        }
 
-      return view ('lotes.show', compact('lote'));
+        return view('lotes.show', compact('lote'));
     }
 
-    public function destroyMaterial(Lote $lote, $id) {
-      $lote->materiales->where('material_id', '=', $id)->first()->delete();
-      return "success";
+    public function destroyMaterial(Lote $lote, $id)
+    {
+        $lote->materiales->where('material_id', '=', $id)->first()->delete();
+
+        return "success";
     }
 }
