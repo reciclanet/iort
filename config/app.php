@@ -181,6 +181,11 @@ return [
          * laravelcollective/html":"^5.4.0"
          */
          Collective\Html\HtmlServiceProvider::class,
+
+         /*
+          * yajra/laravel-datatables-oracle:^7.5
+          */
+          Yajra\Datatables\DatatablesServiceProvider::class,
     ],
 
     /*

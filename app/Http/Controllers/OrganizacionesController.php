@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Organizacion;
 use App\Provincia;
 use App\Http\Requests\GuardarOrganizacionRequest;
+use Yajra\Datatables\Facades\Datatables;
 
 class OrganizacionesController extends Controller
 {
@@ -96,5 +97,20 @@ class OrganizacionesController extends Controller
         $organizaciones = Organizacion::all();
 
         return view('organizaciones.colaboradores', compact('organizaciones'));
+    }
+
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getData()
+    {
+        return Datatables::eloquent(Organizacion::query())
+          ->editColumn('razon_social', function (Organizacion $organizacion) {
+            return '<a href="/organizaciones/'. $organizacion->id . '">' . $organizacion->razon_social . '</a>';
+          })
+            ->rawColumns(['razon_social'])
+            ->make(true);
     }
 }

@@ -10,6 +10,7 @@ use App\Sexo;
 use App\Organizacion;
 use App\Provincia;
 use App\Http\Requests\GuardarPersonaRequest;
+use Yajra\Datatables\Facades\Datatables;
 
 class PersonasController extends Controller
 {
@@ -73,5 +74,33 @@ class PersonasController extends Controller
         $persona->update($request->except(['id', 'created_at', 'updated_at']));
 
         return view('personas.show', compact('persona'));
+    }
+
+    /**
+     * Displays datatables front end view
+     *
+     * @return \Illuminate\View\View
+     */
+    public function getIndex()
+    {
+        return view('personas.indext');
+    }
+
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getData()
+    {
+        return Datatables::eloquent(Persona::query())
+          ->editColumn('nombre', function (Persona $persona) {
+            return '<a href="/personas/'. $persona->id . '">' . $persona->nombre . '</a>';
+          })
+        // ->addColumn('action', function (Persona $persona) {
+        //         return '<a href="/personas/'. $persona->id . '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+        //     })
+            ->rawColumns(['nombre'])
+            ->make(true);
     }
 }

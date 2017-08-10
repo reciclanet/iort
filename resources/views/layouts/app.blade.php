@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack('styles')
 
     <!-- Scripts -->
     <script>
@@ -96,7 +97,7 @@
         </div>
     </div>
 
-
+    @stack('scripts')
 
 </body>
 </html>
