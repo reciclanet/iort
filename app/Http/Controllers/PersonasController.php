@@ -77,16 +77,6 @@ class PersonasController extends Controller
     }
 
     /**
-     * Displays datatables front end view
-     *
-     * @return \Illuminate\View\View
-     */
-    public function getIndex()
-    {
-        return view('personas.indext');
-    }
-
-    /**
      * Process datatables ajax request.
      *
      * @return \Illuminate\Http\JsonResponse
