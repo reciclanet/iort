@@ -45,4 +45,6 @@ Route::get('/lotes/{lote}', 'LoteController@show');
 Route::get('/lotes/{lote}/informe', 'LoteController@showInforme');
 Route::get('/lotes/{lote}/edit', 'LoteController@edit');
 Route::patch('/lotes/{lote}', 'LoteController@update');
-Route::delete('/lotes/{lote}/loteMaterial/{id}', 'LoteController@destroyMaterial');
+
+Route::post('/loteMaterial', 'LoteMaterialController@store');
+Route::delete('/loteMaterial/{loteMaterial}', 'LoteMaterialController@destroy');

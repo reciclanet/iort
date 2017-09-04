@@ -86,12 +86,5 @@ class LoteController extends Controller
         }
 
         return view('lotes.show', compact('lote'));
-    }
-
-    public function destroyMaterial(Lote $lote, $id)
-    {
-        $lote->materiales->where('material_id', '=', $id)->first()->delete();
-
-        return "success";
-    }
+    }    
 }
