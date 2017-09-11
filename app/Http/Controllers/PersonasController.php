@@ -17,6 +17,7 @@ class PersonasController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->breadcrumbs = [['title' => 'personas','url' => '/personas/']];
     }
 
     public function index()
@@ -33,6 +34,7 @@ class PersonasController extends Controller
         $sexos = Sexo::pluck('nombre', 'id');
         $organizaciones = Organizacion::pluck('razon_social', 'id');
         $provincias = Provincia::orderBy('nombre', 'asc')->pluck('nombre', 'cod');
+        $breadcrumbs = $this->breadcrumbs;
 
         return view(
           $vista,
@@ -42,23 +44,30 @@ class PersonasController extends Controller
             'tipos_conocido',
             'sexos',
             'organizaciones',
-            'provincias'
+            'provincias',
+            'breadcrumbs'
           )
         );
     }
 
     public function create()
     {
+        $this->breadcrumbs[] = ['title' => 'crear'];
         return $this->formulario('personas.create', new Persona);
     }
 
     public function show(Persona $persona)
     {
-        return view('personas.show', compact('persona'));
+        $breadcrumbs = $this->breadcrumbs;
+        $breadcrumbs[] = ['title' => 'persona'];
+
+        return view('personas.show', compact('persona', 'breadcrumbs'));
     }
 
     public function edit(Persona $persona)
     {
+        $this->breadcrumbs[] = ['title' => 'persona','url' => '/personas/' . $persona->id];
+        $this->breadcrumbs[] = ['title' => 'editar'];
         return $this->formulario('personas.edit', $persona);
     }
 

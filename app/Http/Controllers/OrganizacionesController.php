@@ -13,6 +13,7 @@ class OrganizacionesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->breadcrumbs = [['title' => 'organizaciones','url' => '/organizaciones/']];
     }
     //
     public function index()
@@ -25,29 +26,36 @@ class OrganizacionesController extends Controller
     protected function formulario($vista, Organizacion $organizacion)
     {
         $provincias = Provincia::orderBy('nombre', 'asc')->pluck('nombre', 'cod');
+        $breadcrumbs = $this->breadcrumbs;
 
         return view(
           $vista,
           compact(
             'organizacion',
-            'provincias'
+            'provincias',
+            'breadcrumbs'
           )
         );
     }
 
     public function create()
     {
+        $this->breadcrumbs[] = ['title' => 'crear'];
         return $this->formulario('organizaciones.create', new Organizacion);
     }
 
     public function show(Organizacion $organizacion)
     {
-        return view('organizaciones.show', compact('organizacion'));
+      $breadcrumbs = $this->breadcrumbs;
+      $breadcrumbs[] = ['title' => 'organizacion'];
+      return view('organizaciones.show', compact('organizacion', 'breadcrumbs'));
     }
 
     public function edit(Organizacion $organizacion)
     {
-        return $this->formulario('organizaciones.edit', $organizacion);
+      $this->breadcrumbs[] = ['title' => 'organizacion','url' => '/organizaciones/' . $organizacion->id];
+      $this->breadcrumbs[] = ['title' => 'editar'];
+      return $this->formulario('organizaciones.edit', $organizacion);
     }
 
     public function store(GuardarOrganizacionRequest $request)

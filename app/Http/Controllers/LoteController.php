@@ -19,7 +19,11 @@ class LoteController extends Controller
 
     public function show(Lote $lote)
     {
-        return view('lotes.show', compact('lote'));
+      $url = isset($lote->persona) ? '/personas/' . $lote->persona_id
+        : '/organizaciones/' . $lote->organizacion_id;
+      $breadcrumbs[] = ['title' => 'responsable','url' => $url];
+      $breadcrumbs[] = ['title' => 'lote'];
+      return view('lotes.show', compact('lote', 'breadcrumbs'));
     }
 
     public function showInforme(Lote $lote)
@@ -31,9 +35,6 @@ class LoteController extends Controller
 
     public function store($tipo, $id)
     {
-        //dd($tipo, $id);
-        //$persona = Persona::create($request->except(['id', 'created_at', 'updated_at']));
-
         $lote = new Lote;
         $lote->fecha = Carbon::now();
         $lote->descripcion = '';
@@ -58,7 +59,12 @@ class LoteController extends Controller
         $tiposLote = TipoLote::pluck('nombre', 'id');
         $edicion = true;
 
-        return view('lotes.edit', compact('lote', 'materiales', 'edicion', 'tiposLote'));
+        $url = isset($lote->persona) ? '/personas/' . $lote->persona_id
+          : '/organizaciones/' . $lote->organizacion_id;
+        $breadcrumbs[] = ['title' => 'responsable','url' => $url];
+        $breadcrumbs[] = ['title' => 'lote', 'url' => '/lotes/' . $lote->id];
+        $breadcrumbs[] = ['title' => 'editar'];
+        return view('lotes.edit', compact('lote', 'materiales', 'edicion', 'tiposLote', 'breadcrumbs'));
     }
 
     public function update(Lote $lote)
@@ -74,8 +80,6 @@ class LoteController extends Controller
         if (!empty($material_id) && !empty($cantidad)) {
             $loteMaterial = new LoteMaterial(request(['material_id', 'cantidad']));
             $loteMaterial->lote_id = $lote->id;
-            //$loteMaterial->material_id = request(['material_id']);
-            //$loteMaterial->cantidad = request(['cantidad']);
             $loteMaterial->material_estado_id = 1;
             $loteMaterial->marca = "";
             $loteMaterial->modelo = '';
@@ -86,5 +90,5 @@ class LoteController extends Controller
         }
 
         return view('lotes.show', compact('lote'));
-    }    
+    }
 }
