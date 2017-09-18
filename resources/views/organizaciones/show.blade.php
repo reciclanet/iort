@@ -36,6 +36,8 @@
       <dd>{{ $organizacion->email }}</dd>
       <dt>Página Web:</dt>
       <dd>{{ $organizacion->pagina_web }}</dd>
+      <dt>Codigo:</dt>
+      <dd>{{ $organizacion->codigo }}</dd>
       <dt>¿Autoriza logo?:</dt>
       <dd>
         @if ($organizacion->autoriza_logo)

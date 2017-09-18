@@ -62,6 +62,11 @@
     {{ Form::text('pagina_web', null, ['class' =>"form-control"] )}}
   </div>
 
+  {{ Form::label('codigo', 'Código', ['class' =>"col-md-2"]) }}
+  <div class="form-group col-md-10 {{ $errors->has('codigo') ? 'error' : '' }}">
+    {{ Form::text('codigo', null, ['class' =>"form-control"] )}}
+  </div>
+
   <div class="form-group col-md-1 {{ $errors->has('autoriza_logo') ? 'error' : '' }}">
     {{ Form::checkbox('autoriza_logo', 1, null)}}
   </div>
