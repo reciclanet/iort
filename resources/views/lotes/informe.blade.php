@@ -126,7 +126,7 @@
 				<td colspan="2">
 					<h2>Colaborador</h2>
 				</td>
-				<td colspan="2" style="text-align: right;">Fecha: {{ $lote->created_at->format('d/m/Y') }}</td>
+				<td colspan="2" style="text-align: right;">Fecha: {{ $lote->fecha->format('d/m/Y') }}</td>
 			</tr>
 			<tr class="borde">
 				<td class="negrita">CONTACTO</td>
