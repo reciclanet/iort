@@ -42,6 +42,7 @@
 
 		.entregadoRecibido {
 			position: absolute;
+		  padding: 0 100px;
 			bottom: 100px;
 	    left: 0;
 	    right: 0;
@@ -130,7 +131,7 @@
 			</tr>
 			<tr class="borde">
 				<td class="negrita">CONTACTO</td>
-				<td colspan="3">{{ (isset($lote->persona_id)) ? $responsable->nombre : $responsable->razon_social }}</td>
+				<td colspan="3">{{ (isset($lote->persona_id)) ? $responsable->getNombreApellidos() : $responsable->razon_social }}</td>
 			</tr>
 			<tr class="borde">
 				<td class="negrita">DIRECCIÓN</td>

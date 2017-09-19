@@ -34,4 +34,11 @@ class Persona extends Model
     {
         return $this->hasMany(Lote::class)->orderBy('fecha');
     }
+
+    public function getNombreApellidos()
+    {
+      return $this->nombre .
+        (empty($this->apellido_1) ? '' : ' ' . $this->apellido_1) .
+        (empty($this->apellido_2) ? '' : ' ' . $this->apellido_2);
+    }
 }
