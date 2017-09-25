@@ -9,6 +9,7 @@
       background: none;
 			font-family: Liberation Serif, serif;
 			font-size: 11pt;
+			padding: 10px;
     }
     a { text-decoration: underline;}
 		p { margin-bottom: 0.25cm; line-height: 120% }
@@ -114,7 +115,7 @@
       <tr>
         <td>Ribera de Axpe 11, D-2, L-105 48950</td>
         <td></td>
-        <td class="text-right">Tel : 94-657.37.4</td>
+        <td class="text-right">Tel : 94-657.37.45</td>
       </tr>
       <tr>
         <td>Erandio-Bizkaia</td>
