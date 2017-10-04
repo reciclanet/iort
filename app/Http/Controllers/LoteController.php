@@ -78,15 +78,18 @@ class LoteController extends Controller
         $material_id = request()->input('material_id');
         $cantidad = request()->input('cantidad');
         if (!empty($material_id) && !empty($cantidad)) {
-            $loteMaterial = new LoteMaterial(request(['material_id', 'cantidad']));
-            $loteMaterial->lote_id = $lote->id;
-            $loteMaterial->material_estado_id = 1;
-            $loteMaterial->marca = "";
-            $loteMaterial->modelo = '';
-            $loteMaterial->tag = '';
-            $loteMaterial->borrado_seguro = !empty(request()->input('borrado_seguro')) ? request()->input('borrado_seguro') : 0;
-            $loteMaterial->foto = '';
-            $loteMaterial->save();
+          for($contador = 0; $contador < request()->input('cantidad'); $contador++){
+              $loteMaterial = new LoteMaterial(request(['material_id']));
+              $loteMaterial->lote_id = $lote->id;
+              $loteMaterial->material_estado_id = 1;
+              $loteMaterial->cantidad = 1;
+              $loteMaterial->marca = "";
+              $loteMaterial->modelo = '';
+              $loteMaterial->tag = '';
+              $loteMaterial->borrado_seguro = !empty(request()->input('borrado_seguro')) ? request()->input('borrado_seguro') : 0;
+              $loteMaterial->foto = '';
+              $loteMaterial->save();
+            }
         }
 
         return view('lotes.show', compact('lote'));
