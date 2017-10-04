@@ -37,4 +37,18 @@ class Lote extends Model
     {
         return ['created_at', 'updated_at', 'fecha'];
     }
+
+    public function getMaterialesAgrupados()
+    {
+      $materiales = [];
+      foreach($this->materiales as $material){
+        $codigoMaterial = $material->material_id . '_' . $material->borrado_seguro;
+        if(array_key_exists($codigoMaterial, $materiales)){
+          $materiales[$codigoMaterial]->cantidad++;
+        } else {
+          $materiales[$codigoMaterial] = $material;
+        }
+      }
+      return $materiales;
+    }
 }
