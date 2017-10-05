@@ -82,7 +82,7 @@ class LoteController extends Controller
               $loteMaterial = new LoteMaterial(request(['material_id']));
               $loteMaterial->lote_id = $lote->id;
               $loteMaterial->material_estado_id = 1;
-              $loteMaterial->cantidad = 1;
+              $loteMaterial->codigo = LoteMaterial::getCodigoSiguiente();
               $loteMaterial->marca = "";
               $loteMaterial->modelo = '';
               $loteMaterial->tag = '';

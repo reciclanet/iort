@@ -5,7 +5,7 @@
       <thead>
         <tr>
           <th>Material</th>
-          <th>Cantidad</th>
+          <th>Código</th>
           <th>¿Borrado Seguro?</th>
           @if (isset($edicion) && $edicion)
             <th></th>
@@ -16,7 +16,7 @@
         @foreach ($lote->materiales as $loteMaterial)
           <tr id="loteMaterial{{$loteMaterial->material_id}}">
             <td>{{ $loteMaterial->material->nombre }}</td>
-            <td>{{ $loteMaterial->cantidad }}</td>
+            <td>{{ $loteMaterial->codigo }}</td>
             <td>{{ ($loteMaterial->borrado_seguro)? 'Sí' : 'No' }}</td>
             @if (isset($edicion) && $edicion)
               <td>
@@ -28,6 +28,14 @@
       </tbody>
       @if (isset($edicion) && $edicion)
         <tfoot>
+          <tr>
+            <th>Material</th>
+            <th>Cantidad</th>
+            <th>¿Borrado Seguro?</th>
+            @if (isset($edicion) && $edicion)
+              <th></th>
+            @endif
+          </tr>
           <tr>
             <td>{{ Form::select('material_id', $materiales, null, ['class'=>"form-control", 'placeholder' => ''])}}</td>
             <td>{{ Form::number('cantidad', null, ['class' =>"form-control"] )}}</td>

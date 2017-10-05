@@ -46,6 +46,7 @@ class Lote extends Model
         if(array_key_exists($codigoMaterial, $materiales)){
           $materiales[$codigoMaterial]->cantidad++;
         } else {
+          $material->cantidad = 1;
           $materiales[$codigoMaterial] = $material;
         }
       }
