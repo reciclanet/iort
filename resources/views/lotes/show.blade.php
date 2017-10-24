@@ -13,7 +13,7 @@
     </dl>
   </div>
 
-  @include ('lote_material.index')
+  @include ('lote_material.index_agrupado')
 
   <div style="clear:both;">
     <div class="col-sm-6">
