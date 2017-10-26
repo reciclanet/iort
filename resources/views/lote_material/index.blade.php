@@ -7,6 +7,7 @@
           <th>Material</th>
           <th>Código</th>
           <th>¿Borrado Seguro?</th>
+          <th>TXAE</th>
           @if (isset($edicion) && $edicion)
             <th></th>
           @endif
@@ -18,6 +19,7 @@
             <td>{{ $loteMaterial->material->nombre }}</td>
             <td>{{ $loteMaterial->codigo }}</td>
             <td>{{ ($loteMaterial->borrado_seguro)? 'Sí' : 'No' }}</td>
+            <td>{{ ($loteMaterial->txae)? 'Sí' : 'No' }}</td>
             @if (isset($edicion) && $edicion)
               <td>
                 <button type="submit" class="btn btn-danger delete-loteMaterial" value="{{$loteMaterial->id}}">Eliminar</button>
@@ -32,6 +34,7 @@
             <th>Material</th>
             <th>Cantidad</th>
             <th>¿Borrado Seguro?</th>
+            <th>TXAE</th>
             @if (isset($edicion) && $edicion)
               <th></th>
             @endif
@@ -40,6 +43,7 @@
             <td>{{ Form::select('material_id', $materiales, null, ['class'=>"form-control", 'placeholder' => ''])}}</td>
             <td>{{ Form::number('cantidad', null, ['class' =>"form-control"] )}}</td>
             <td>{{ Form::checkbox('borrado_seguro', 1, null)}}</td>
+            <td>{{ Form::checkbox('txae', 1, null)}}</td>
             <td><button type="submit" class="btn btn-success add-loteMaterial">Añadir</button></td>
           </tr>
         </tfoot>
@@ -86,7 +90,8 @@ jQuery(document).ready(function($) {
                 lote_id: {{ $lote->id }},
                 material_id: $('select[name=material_id]').val(),
                 cantidad: $('input[name=cantidad]').val(),
-                borrado_seguro: $('input[name=borrado_seguro]').is(":checked")
+                borrado_seguro: $('input[name=borrado_seguro]').is(":checked"),
+                txae: $('input[name=txae]').is(":checked")
             }
             console.log(formData);
         $.ajax({
@@ -99,8 +104,9 @@ jQuery(document).ready(function($) {
               $('#loteMaterialIndex').html(data.html);
               cargarBotonesEliminar();
               $('select[name=material_id]').val('');
-              $('input[name=cantidad]').val('')
+              $('input[name=cantidad]').val('');
               $('input[name=borrado_seguro]').prop('checked', false);
+              $('input[name=txae]').prop('checked', false);
             } else {
               alert(data.message);
             }

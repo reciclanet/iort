@@ -55,7 +55,7 @@ class LoteController extends Controller
 
     public function edit(Lote $lote)
     {
-        $materiales = Material::pluck('nombre', 'id');
+        $materiales = Material::orderBy('nombre')->pluck('nombre', 'id');
         $tiposLote = TipoLote::pluck('nombre', 'id');
         $edicion = true;
 
@@ -81,7 +81,7 @@ class LoteController extends Controller
           for($contador = 0; $contador < request()->input('cantidad'); $contador++){
               $loteMaterial = new LoteMaterial(request(['material_id']));
               $loteMaterial->lote_id = $lote->id;
-              $loteMaterial->material_estado_id = 1;
+              $loteMaterial->txae = !empty(request()->input('txae')) ? request()->input('txae') : 0;
               $loteMaterial->codigo = LoteMaterial::getCodigoSiguiente();
               $loteMaterial->marca = "";
               $loteMaterial->modelo = '';

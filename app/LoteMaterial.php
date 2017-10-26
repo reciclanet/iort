@@ -19,11 +19,6 @@ class LoteMaterial extends Model
         return $this->belongsTo(Material::class);
     }
 
-    public function materialEstado()
-    {
-        return $this->belongsTo(MaterialEstado::class);
-    }
-
     public static function getCodigoSiguiente()
     {
         $codigo = DB::table('lote_materiales')

@@ -17,7 +17,7 @@ class LoteMaterialController extends Controller
           for($contador = 0; $contador < request()->input('cantidad'); $contador++){
             $loteMaterial = new LoteMaterial(request(['material_id']));
             $loteMaterial->lote_id = $lote_id;
-            $loteMaterial->material_estado_id = 1;
+            $loteMaterial->txae = (request()->input('txae') == 'true');
             $loteMaterial->codigo = LoteMaterial::getCodigoSiguiente();
             $loteMaterial->marca = "";
             $loteMaterial->modelo = '';
