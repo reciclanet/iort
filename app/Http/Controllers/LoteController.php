@@ -21,7 +21,7 @@ class LoteController extends Controller
     {
       $url = isset($lote->persona) ? '/personas/' . $lote->persona_id
         : '/organizaciones/' . $lote->organizacion_id;
-      $breadcrumbs[] = ['title' => 'responsable','url' => $url];
+      $breadcrumbs[] = ['title' => $lote->responsable()->getNombreDescriptivo(),'url' => $url];
       $breadcrumbs[] = ['title' => 'lote'];
       return view('lotes.show', compact('lote', 'breadcrumbs'));
     }
@@ -61,7 +61,7 @@ class LoteController extends Controller
 
         $url = isset($lote->persona) ? '/personas/' . $lote->persona_id
           : '/organizaciones/' . $lote->organizacion_id;
-        $breadcrumbs[] = ['title' => 'responsable','url' => $url];
+        $breadcrumbs[] = ['title' => $lote->responsable()->getNombreDescriptivo(),'url' => $url];
         $breadcrumbs[] = ['title' => 'lote', 'url' => '/lotes/' . $lote->id];
         $breadcrumbs[] = ['title' => 'editar'];
         return view('lotes.edit', compact('lote', 'materiales', 'edicion', 'tiposLote', 'breadcrumbs'));

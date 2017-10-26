@@ -20,4 +20,9 @@ class Organizacion extends Model
     {
         return $this->hasMany(Lote::class);
     }
+
+    public function getNombreDescriptivo()
+    {
+      return $this->razon_social;
+    }
 }

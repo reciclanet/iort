@@ -132,7 +132,7 @@
 			</tr>
 			<tr class="borde">
 				<td class="negrita">CONTACTO</td>
-				<td colspan="3">{{ (isset($lote->persona_id)) ? $responsable->getNombreApellidos() : $responsable->razon_social }}</td>
+				<td colspan="3">{{ $responsable->getNombreDescriptivo() }}</td>
 			</tr>
 			<tr class="borde">
 				<td class="negrita">DIRECCIÓN</td>
