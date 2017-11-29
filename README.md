@@ -25,16 +25,31 @@ cp .env.example .env
 
 Editar el fichero `.env` con los datos necesarios para conectarse a la BBDD.
 
-Crear la BBDD llamada `iort` y luego generar la estructura mediante los comandos:
+* En caso de MySQL habrá que crearla en el servidor.
+``` 
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=iort
+DB_USERNAME=iort
+DB_PASSWORD=iort
+```
+* En caso de sqlite (por defecto): 
+```
+DB_CONNECTION=sqlite
+```
+Crear la BBDD, en el caso de MySQL habrá que crear la BBDD con el nombre introducido en DB_DATABASE. En el caso de sqlite hay que ejecutar el siguiente comando:
+```
+touch database/database.sqlite
+```
+
+Generar la estructura mediante los comandos:
 ```
 php artisan migrate
 ```
-
-
 ```
 php artisan db:seed
 ```
-
 
 Crear las claves de la aplicación utilizadas para el hash de las contraseñas, la sesión, etc..
 ```
@@ -51,5 +66,5 @@ php artisan serve
 
 En la consola aparecerá la ruta a la que acceder, normalmente:
 ```
-http://localhost:8000
+http://127.0.0.1:8000
 ```
