@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Organizacion;
 use App\Provincia;
+use App\TipoConocido;
 use App\Http\Requests\GuardarOrganizacionRequest;
 use Yajra\Datatables\Facades\Datatables;
 
@@ -25,6 +26,7 @@ class OrganizacionesController extends Controller
 
     protected function formulario($vista, Organizacion $organizacion)
     {
+        $tipos_conocido = TipoConocido::pluck('nombre', 'id');
         $provincias = Provincia::orderBy('nombre', 'asc')->pluck('nombre', 'cod');
         $breadcrumbs = $this->breadcrumbs;
 
@@ -32,6 +34,7 @@ class OrganizacionesController extends Controller
           $vista,
           compact(
             'organizacion',
+            'tipos_conocido',
             'provincias',
             'breadcrumbs'
           )

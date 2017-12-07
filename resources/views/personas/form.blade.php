@@ -1,7 +1,7 @@
 
 @include ('layouts.errors')
 
-<div class='row'>
+<div class='grid'>
   {{ Form::label('nombre', 'Nombre', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-10  {{ $errors->has('nombre') ? 'error' : '' }}">
     {{ Form::text('nombre', null, ['class' =>"form-control"] )}}
@@ -85,10 +85,17 @@
     </a>
   </div>
 
+<div class="row">
   {{ Form::label('cargo', 'Cargo', ['class' =>"col-md-2"]) }}
   <div class="form-group col-md-3 {{ $errors->has('cargo') ? 'error' : '' }}">
     {{ Form::text('cargo', null, ['class' =>"form-control"] )}}
   </div>
+</div>
+
+    {{ Form::label('notas', 'Notas', ['class' =>"col-md-2"]) }}
+    <div class="form-group col-md-10 {{ $errors->has('notas') ? 'error' : '' }}">
+      {{ Form::text('notas', null, ['class' =>"form-control"] )}}
+    </div>
 
 </div>
 

@@ -32,6 +32,7 @@ class CreatePersonasTable extends Migration
             $table->smallInteger('tipo_conocido_id')->unsigned()->nullable();
             $table->smallInteger('tipo_alta_id')->unsigned()->nullable();
             $table->integer('organizacion_id')->unsigned()->nullable();
+            $table->text('notas')->nullable();
             $table->timestamps();
         });
     }

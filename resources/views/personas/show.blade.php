@@ -58,6 +58,8 @@
       </dd>
       <dt>Cargo:</dt>
       <dd>{{ $persona->cargo }}</dd>
+      <dt>Notas:</dt>
+      <dd>{{ $persona->notas }}</dd>
     </dl>
   </div>
   <div class="col-sm-6">

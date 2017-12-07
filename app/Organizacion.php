@@ -11,6 +11,11 @@ class Organizacion extends Model
                 'autoriza_logo' => 'boolean'
                 ];
 
+    public function tipoConocido()
+    {
+        return $this->belongsTo(TipoConocido::class);
+    }
+
     public function provincia()
     {
         return $this->belongsTo(Provincia::class, 'provincia_cod', 'cod');

@@ -36,6 +36,12 @@
       <dd>{{ $organizacion->email }}</dd>
       <dt>Página Web:</dt>
       <dd>{{ $organizacion->pagina_web }}</dd>
+      <dt>¿Cómo nos has conocido?:</dt>
+      <dd>
+        @if ($organizacion->tipoConocido)
+          {{ $organizacion->tipoConocido->nombre }}
+        @endif
+      </dd>
       <dt>Codigo:</dt>
       <dd>{{ $organizacion->codigo }}</dd>
       <dt>¿Autoriza logo?:</dt>
@@ -46,6 +52,8 @@
           {{ "No" }}
         @endif
       </dd>
+      <dt>Notas:</dt>
+      <dd>{{ $organizacion->notas }}</dd>
       <dt></dt>
       <dd>
         @if ($organizacion->logo)

@@ -62,8 +62,13 @@
     {{ Form::text('pagina_web', null, ['class' =>"form-control"] )}}
   </div>
 
+  {{ Form::label('tipo_conocido_id', '¿Cómo nos has conocido?', ['class' =>"col-md-3"]) }}
+  <div class="form-group col-md-3 {{ $errors->has('tipo_conocido_id') ? 'error' : '' }}">
+    {{ Form::select('tipo_conocido_id', $tipos_conocido, null, ['class'=>"form-control", 'placeholder' => ''])}}
+  </div>
+
   {{ Form::label('codigo', 'Código', ['class' =>"col-md-2"]) }}
-  <div class="form-group col-md-10 {{ $errors->has('codigo') ? 'error' : '' }}">
+  <div class="form-group col-md-4 {{ $errors->has('codigo') ? 'error' : '' }}">
     {{ Form::text('codigo', null, ['class' =>"form-control"] )}}
   </div>
 
@@ -76,6 +81,11 @@
   {{ Form::hidden('logo') }}
   <div class="form-group col-md-10 {{ $errors->has('logo') ? 'error' : '' }}">
     {{ Form::file('logo_file', null, ['class' =>"form-control"] )}}
+  </div>
+
+  {{ Form::label('notas', 'Notas', ['class' =>"col-md-2"]) }}
+  <div class="form-group col-md-10 {{ $errors->has('notas') ? 'error' : '' }}">
+    {{ Form::text('notas', null, ['class' =>"form-control"] )}}
   </div>
 </div>
 
