@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-  <h1>Personas</h1>
+  <h1>Organizaciones</h1>
   <a href="{{ url('organizaciones/create')}}" class="btn btn-primary">Nueva</a>
 
   <div>
