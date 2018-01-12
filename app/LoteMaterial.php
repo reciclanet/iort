@@ -22,7 +22,7 @@ class LoteMaterial extends Model
     public static function getCodigoSiguiente()
     {
         $codigo = DB::table('lote_materiales')
-          ->whereYear('created_at', ''.Carbon::today()->year)
+          //->whereYear('created_at', ''.Carbon::today()->year)
           ->max('codigo');
 
         return $codigo ? $codigo + 1 : 1;
