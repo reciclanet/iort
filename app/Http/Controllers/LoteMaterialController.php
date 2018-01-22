@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Lote;
 use App\Material;
 use App\LoteMaterial;
 use Illuminate\Http\Request;
@@ -13,21 +14,14 @@ class LoteMaterialController extends Controller
       $lote_id = request()->input('lote_id');
       $material_id = request()->input('material_id');
       $cantidad = request()->input('cantidad');
+      $txae = request()->input('txae');
+      $borradoSeguro = request()->input('borrado_seguro');
       if (!empty($lote_id) && !empty($material_id) && !empty($cantidad)) {
-          for($contador = 0; $contador < request()->input('cantidad'); $contador++){
-            $loteMaterial = new LoteMaterial(request(['material_id']));
-            $loteMaterial->lote_id = $lote_id;
-            $loteMaterial->txae = (request()->input('txae') == 'true');
-            $loteMaterial->codigo = LoteMaterial::getCodigoSiguiente();
-            $loteMaterial->marca = "";
-            $loteMaterial->modelo = '';
-            $loteMaterial->tag = '';
-            $loteMaterial->borrado_seguro = (request()->input('borrado_seguro') == 'true');
-            $loteMaterial->foto = '';
-            $loteMaterial->save();
-          }
+
+          LoteMaterial::crearLoteMateriales($lote_id, $material_id, $cantidad, $txae, $borradoSeguro);
+
           $returnHTML = view('lote_material.index')
-            ->with('lote', $loteMaterial->lote)
+            ->with('lote', Lote::find($lote_id))
             ->with('materiales', Material::pluck('nombre', 'id'))
             ->with('edicion', true)
             ->render();

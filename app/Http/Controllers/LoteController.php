@@ -23,6 +23,7 @@ class LoteController extends Controller
         : '/organizaciones/' . $lote->organizacion_id;
       $breadcrumbs[] = ['title' => $lote->responsable()->getNombreDescriptivo(),'url' => $url];
       $breadcrumbs[] = ['title' => 'lote'];
+
       return view('lotes.show', compact('lote', 'breadcrumbs'));
     }
 
@@ -64,6 +65,7 @@ class LoteController extends Controller
         $breadcrumbs[] = ['title' => $lote->responsable()->getNombreDescriptivo(),'url' => $url];
         $breadcrumbs[] = ['title' => 'lote', 'url' => '/lotes/' . $lote->id];
         $breadcrumbs[] = ['title' => 'editar'];
+
         return view('lotes.edit', compact('lote', 'materiales', 'edicion', 'tiposLote', 'breadcrumbs'));
     }
 
@@ -73,23 +75,19 @@ class LoteController extends Controller
         if (empty($descripcion)) {
             $descripcion = '';
         }
-        $lote->update(['descripcion' => $descripcion, 'fecha' => request()->input('fecha'), 'tipo_lote_id' => request()->input('tipo_lote_id')]);
+        $lote->update([
+          'descripcion' => $descripcion,
+          'fecha' => request()->input('fecha'),
+          'tipo_lote_id' => request()->input('tipo_lote_id')
+        ]);
 
         $material_id = request()->input('material_id');
         $cantidad = request()->input('cantidad');
+        $txae = request()->input('txae');
+        $borradoSeguro = request()->input('borrado_seguro');
         if (!empty($material_id) && !empty($cantidad)) {
-          for($contador = 0; $contador < request()->input('cantidad'); $contador++){
-              $loteMaterial = new LoteMaterial(request(['material_id']));
-              $loteMaterial->lote_id = $lote->id;
-              $loteMaterial->txae = !empty(request()->input('txae')) ? request()->input('txae') : 0;
-              $loteMaterial->codigo = LoteMaterial::getCodigoSiguiente();
-              $loteMaterial->marca = "";
-              $loteMaterial->modelo = '';
-              $loteMaterial->tag = '';
-              $loteMaterial->borrado_seguro = !empty(request()->input('borrado_seguro')) ? request()->input('borrado_seguro') : 0;
-              $loteMaterial->foto = '';
-              $loteMaterial->save();
-            }
+
+            LoteMaterial::crearLoteMateriales($lote->id, $material_id, $cantidad, $txae, $borradoSeguro);
         }
 
         return view('lotes.show', compact('lote'));
