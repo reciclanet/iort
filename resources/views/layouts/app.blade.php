@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack('styles')
 
     <!-- Scripts -->
     <script>
@@ -19,6 +20,7 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -28,7 +30,7 @@
 
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="sr-only">Menu</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -36,6 +38,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="{{ asset('images/reciclanet.png') }}" alt="logo" class="logo" />
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -45,13 +48,16 @@
                     <ul class="nav navbar-nav">
                         &nbsp;
                     </ul>
-
+                    <!-- TODO: Borrar esto, es mientras siga el desarrollo -->
+                    <ul class="nav navbar-nav navbar-right">
+                      <a href="mailto:mikelmarcosramos@gmail.com?Subject=[IORT] Incidencia">Contactar</a>
+                    </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">Conectarse</a></li>
+                            {{-- <li><a href="{{ route('register') }}">Register</a></li> --}}
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -63,7 +69,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Salir
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -78,10 +84,32 @@
             </div>
         </nav>
 
-        @yield('content')
+        <nav>
+        		<ul class="sidenav">
+                  <li class="{{ Request::is('/')? 'active' : ''}}"><a href="{{ url('/')}}">Inicio</a></li>
+                  <li class="{{ Request::is('personas')? 'active' : ''}}"><a href="{{ url('personas')}}">Personas</a></li>
+                  <li class="{{ Request::is('organizaciones')? 'active' : ''}}"><a href="{{ url('organizaciones')}}">Organizaciones</a></li>
+                  <li class="{{ Request::is('colaboradores')? 'active' : ''}}"><a href="{{ url('colaboradores')}}">Colaboradores</a></li>
+        		</ul>
+      	</nav>
+
+        <div class="content">
+          @if (isset($breadcrumbs) && count($breadcrumbs))
+              <ol class="breadcrumb">
+                  @foreach ($breadcrumbs as $breadcrumb)
+                      @if (array_key_exists('url', $breadcrumb))
+                          <li><a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['title'] }}</a></li>
+                      @else
+                          <li class="active">{{ $breadcrumb['title'] }}</li>
+                      @endif
+                  @endforeach
+              </ol>
+          @endif
+          @yield('content')
+        </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    @stack('scripts')
+
 </body>
 </html>
