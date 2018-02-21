@@ -4,6 +4,8 @@
   <div class="col-sm-6">
     <h1>Datos Persona</h1>
     <dl class="dl-horizontal">
+      <dt>Fecha de alta:</dt>
+      <dd>{{ $persona->created_at->toDateString() }}</dd>
       <dt>Nombre:</dt>
       <dd>{{ $persona->nombre }}</dd>
       <dt>Apellido 1:</dt>

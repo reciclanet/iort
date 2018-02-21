@@ -4,6 +4,8 @@
   <div class="col-sm-6">
     <h1>Datos Organización</h1>
     <dl class="dl-horizontal">
+      <dt>Fecha de alta:</dt>
+      <dd>{{ $organizacion->created_at->toDateString() }}</dd>
       <dt>Razón Social:</dt>
       <dd>{{ $organizacion->razon_social }}</dd>
       <dt>Actividad Principal:</dt>
