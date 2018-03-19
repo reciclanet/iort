@@ -16,3 +16,6 @@ bootstrap/cache/
 
 # Logos subidos
 public/images/logos/
+
+# Composer
+composer.lock
