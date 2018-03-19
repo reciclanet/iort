@@ -30,4 +30,9 @@ class Organizacion extends Model
     {
       return $this->razon_social;
     }
+
+    public function tags()
+    {
+      return $this->belongsToMany(Tag::class);
+    }
 }

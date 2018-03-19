@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Organizacion;
 use App\Provincia;
+use App\Tag;
 use App\TipoConocido;
 use App\Http\Requests\GuardarOrganizacionRequest;
 use Yajra\Datatables\Facades\Datatables;
@@ -28,6 +29,7 @@ class OrganizacionesController extends Controller
     {
         $tipos_conocido = TipoConocido::pluck('nombre', 'id');
         $provincias = Provincia::orderBy('nombre', 'asc')->pluck('nombre', 'cod');
+        $tags = Tag::all()->pluck('nombre', 'id');;
         $breadcrumbs = $this->breadcrumbs;
 
         return view(
@@ -36,6 +38,7 @@ class OrganizacionesController extends Controller
             'organizacion',
             'tipos_conocido',
             'provincias',
+            'tags',
             'breadcrumbs'
           )
         );
@@ -63,21 +66,7 @@ class OrganizacionesController extends Controller
 
     public function store(GuardarOrganizacionRequest $request)
     {
-        $request->merge(['autoriza_logo' => ($request->autoriza_logo) ? 1 : 0]);
-        $organizacion = Organizacion::create($request->except(['id', 'created_at', 'updated_at', 'logo_file']));
-
-        if ($organizacion->autoriza_logo && $fichero = $request->file('logo_file')) {
-            $imagen = $organizacion->id . '.' .
-              $fichero->getClientOriginalExtension();
-
-            $fichero->move(
-                base_path() . '/public/images/logos/',
-                $imagen
-            );
-
-            $organizacion->logo = $imagen;
-            $organizacion->save();
-        }
+        $organizacion = $this->crearOrganizacion($request);
 
         return view('organizaciones.show', compact('organizacion'));
     }
@@ -85,20 +74,10 @@ class OrganizacionesController extends Controller
     public function update(GuardarOrganizacionRequest $request, Organizacion $organizacion)
     {
         $request->merge(['autoriza_logo' => ($request->autoriza_logo) ? 1 : 0]);
-        $organizacion->update($request->except(['id', 'created_at', 'updated_at', 'logo_file']));
+        $organizacion->update($request->except(['id', 'created_at', 'updated_at', 'logo_file', 'tags']));
+        $this->sincronizarTags($organizacion, $request->input('tags'));
 
-        if ($organizacion->autoriza_logo && $fichero = $request->file('logo_file')) {
-            $imagen = $organizacion->id . '.' .
-            $fichero->getClientOriginalExtension();
-
-            $fichero->move(
-                base_path() . '/public/images/logos/',
-                $imagen
-            );
-
-            $organizacion->logo = $imagen;
-            $organizacion->save();
-        }
+        $this->subirLogo($organizacion, $request);
 
         return view('organizaciones.show', compact('organizacion'));
     }
@@ -123,5 +102,73 @@ class OrganizacionesController extends Controller
           })
             ->rawColumns(['razon_social'])
             ->make(true);
+    }
+
+    protected function tratarTags(array $tags)
+    {
+      return null;
+    }
+
+    /**
+     * Sincroniza los tags de una organización
+     *
+     * @param Organizacion $organizacion
+     * @param array $tags
+     */
+    protected function sincronizarTags(Organizacion $organizacion, array $tags)
+    {
+      $tags = array_map(function($valor){
+        $valorNuevo = str_replace("nuevo|", "", $valor);
+        if (strlen($valor) != strlen($valorNuevo)){
+          $valorNuevo = trim($valorNuevo);
+          $tag = Tag::find($valorNuevo);
+          if (!$tag){
+            $tag = Tag::create(['nombre' => "$valorNuevo"]);
+          }
+          $valor = $tag->id;
+        }
+        return $valor;
+      }, $tags);
+
+      $organizacion->tags()->sync($tags);
+    }
+
+    /**
+     * Actualiza el logo de la organización
+     *
+     * @param Organizacion $organizacion
+     * @param GuardarOrganizacionRequest $request
+     */
+    protected function subirLogo(Organizacion $organizacion, GuardarOrganizacionRequest $request)
+    {
+      if ($organizacion->autoriza_logo && $fichero = $request->file('logo_file')) {
+          $imagen = $organizacion->id . '.' .
+            $fichero->getClientOriginalExtension();
+
+          $fichero->move(
+              base_path() . '/public/images/logos/',
+              $imagen
+          );
+
+          $organizacion->logo = $imagen;
+          $organizacion->save();
+      }
+    }
+
+    /**
+     * Crea una organización a partir del formulario
+     *
+     * @param GuardarOrganizacionRequest $request
+     * @return mixed
+     */
+    protected function crearOrganizacion(GuardarOrganizacionRequest $request)
+    {
+      $request->merge(['autoriza_logo' => ($request->autoriza_logo) ? 1 : 0]);
+      $organizacion = Organizacion::create($request->except(['id', 'created_at', 'updated_at', 'logo_file', 'tags']));
+      $this->sincronizarTags($organizacion, $request->input('tags'));
+
+      $this->subirLogo($organizacion, $request);
+
+      return $organizacion;
     }
 }

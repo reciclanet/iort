@@ -72,10 +72,12 @@
     {{ Form::text('codigo', null, ['class' =>"form-control"] )}}
   </div>
 
-  <div class="form-group col-md-1 {{ $errors->has('autoriza_logo') ? 'error' : '' }}">
-    {{ Form::checkbox('autoriza_logo', 1, null)}}
+  <div class="form-group">
+    <div class="col-md-2 {{ $errors->has('autoriza_logo') ? 'error' : '' }}">
+      {{ Form::checkbox('autoriza_logo', 1, null)}}
+    </div>
+    {{ Form::label('autoriza_logo', '¿AUTORIZO EL USO DEL LOGOTIPO DE LA EMPRESA PARA EL USO DE RECICLANET EN LA SECCIÓN DE COLABORADORES DE SU PÁGINA WEB?', ['class' =>"col-md-10"]) }}
   </div>
-  {{ Form::label('autoriza_logo', '¿AUTORIZO EL USO DEL LOGOTIPO DE LA EMPRESA PARA EL USO DE RECICLANET EN LA SECCIÓN DE COLABORADORES DE SU PÁGINA WEB?', ['class' =>"col-md-11"]) }}
 
   {{ Form::label('logo', 'Logo', ['class' =>"col-md-2"]) }}
   {{ Form::hidden('logo') }}
@@ -87,7 +89,34 @@
   <div class="form-group col-md-10 {{ $errors->has('notas') ? 'error' : '' }}">
     {{ Form::text('notas', null, ['class' =>"form-control"] )}}
   </div>
+
+  {{ Form::label('tags', 'Etiquetas', ['class' =>"col-md-2"]) }}
+  <div class="form-group col-md-10 {{ $errors->has('tags') ? 'error' : '' }}">
+    {{ Form::select('tags[]', $tags, null, ['id'=> 'tags', 'class' =>"form-control", 'multiple'] )}}
+  </div>
 </div>
 
 <button type="submit" class="btn btn-primary">Guardar</button>
 <a href="{{ URL::previous() }}" class="btn btn-danger">Cancelar</a>
+
+@push('styles')
+  <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+@endpush
+
+@push('scripts')
+  <script src="{{ asset('js/select2.min.js') }}"></script>
+  <script>
+    $(function() {
+        $('#tags').select2({
+            placeholder: 'Intriduce las etiquetas que te interesen',
+            tags: true,
+            createTag: function(newTag) {
+                return {
+                    id: 'nuevo|' + newTag.term,
+                    text: newTag.term
+                };
+            }
+        });
+    });
+  </script>
+@endpush
