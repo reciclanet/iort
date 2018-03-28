@@ -75,7 +75,7 @@ class OrganizacionesController extends Controller
     {
         $request->merge(['autoriza_logo' => ($request->autoriza_logo) ? 1 : 0]);
         $organizacion->update($request->except(['id', 'created_at', 'updated_at', 'logo_file', 'tags']));
-        $this->sincronizarTags($organizacion, $request->input('tags'));
+        $this->sincronizarTags($organizacion, $request->input('tags', []));
 
         $this->subirLogo($organizacion, $request);
 
@@ -165,7 +165,7 @@ class OrganizacionesController extends Controller
     {
       $request->merge(['autoriza_logo' => ($request->autoriza_logo) ? 1 : 0]);
       $organizacion = Organizacion::create($request->except(['id', 'created_at', 'updated_at', 'logo_file', 'tags']));
-      $this->sincronizarTags($organizacion, $request->input('tags'));
+      $this->sincronizarTags($organizacion, $request->input('tags', []));
 
       $this->subirLogo($organizacion, $request);
 
