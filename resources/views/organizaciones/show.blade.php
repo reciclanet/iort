@@ -56,6 +56,12 @@
       </dd>
       <dt>Notas:</dt>
       <dd>{{ $organizacion->notas }}</dd>
+      <dt>Etiquetas:</dt>
+      <dd>
+        @foreach ($organizacion->tags as $tag)
+          <span class="label label-primary">{{ $tag->nombre }}</span>
+        @endforeach
+      </dd>
       <dt></dt>
       <dd>
         @if ($organizacion->logo)
