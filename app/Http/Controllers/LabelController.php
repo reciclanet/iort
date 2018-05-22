@@ -21,12 +21,12 @@ class LabelController extends Controller
       ->whereNotNull('lote_materiales.codigo')
       //->where('lotes.fecha', '>=', '2018-05-02')
       ->paginate(10);
-dump($request);
+
       return view('labels.index', compact('materiales'));
   }
 
   public function export(LabelsFiltroRequest $request)
-  { dd($request);
+  {
     $materiales = LoteMaterial::whereNotNull('codigo')
       ->with('lote')
       ->get();
