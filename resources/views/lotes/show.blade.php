@@ -19,6 +19,7 @@
     <div class="col-sm-6">
       <a href="{{ url('lotes/' . $lote->id . '/edit')}}" class="btn btn-primary">Editar</a>
       <a href="{{ url('lotes/' . $lote->id . '/informe')}}" class="btn btn-primary" target="_blank">Imprimir</a>
+      <a href="{{ url('labels/export/?lote=' . $lote->id )}}" class="btn btn-primary" target="_blank">Exportar</a>
     </div>
   </div>
 @endsection

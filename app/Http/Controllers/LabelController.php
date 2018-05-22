@@ -27,9 +27,13 @@ class LabelController extends Controller
 
   public function export(LabelsFiltroRequest $request)
   {
-    $materiales = LoteMaterial::whereNotNull('codigo')
-      ->with('lote')
-      ->get();
+    $filtro = LoteMaterial::whereNotNull('codigo')
+      ->with('lote');
+    if ($lote_id = request()->input('lote')) {
+      $filtro = $filtro->where('lote_id', $lote_id);
+    }
+
+    $materiales = $filtro->get();
 
     header("Content-type: text/csv");
     header("Content-Disposition: attachment; filename=labels.csv");

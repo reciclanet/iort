@@ -29,6 +29,7 @@ class LabelsFiltroRequest extends FormRequest
           'colaborador' => 'nullable',
           'fecha_desde' => 'nullable|date',
           'fecha_hasta' => 'nullable|date',
+          'lote.*.id' => 'distinct|integer'
         ];
     }
 }
