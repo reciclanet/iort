@@ -52,3 +52,6 @@ Route::delete('/loteMaterial/{loteMaterial}', 'LoteMaterialController@destroy');
 Route::get('/labels/', 'LabelController@index');
 Route::post('/labels/', 'LabelController@index');
 Route::get('/labels/export', 'LabelController@export');
+
+Route::get('/informes/', 'InformeController@index');
+Route::get('/informes/export', 'InformeController@export');
