@@ -12,6 +12,9 @@
         <li>
           <a href="{{ url('informes/export?type=mes')}}" class="btn btn-primary">Sumatorio de materiales por mes</a>
         </li>
+        <li>
+          <a href="{{ url('informes/export?type=logos')}}" class="btn btn-primary">Colaboradores Sin Logo</a>
+        </li>
       </ul>
     </div>
   </div>
