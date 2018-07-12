@@ -16,7 +16,6 @@ class InformeController extends Controller
   public function export(Request $request)
   {
     $datos = $this->obtenerDatosInforme($request->input('type'));
-    dd($datos);
 
     if (count($datos) > 0) {
 
