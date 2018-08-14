@@ -6,15 +6,11 @@
   <div>
     <div>
       <ul>
-        <li>
-          <a href="{{ url('informes/export?type=anio')}}" class="btn btn-primary">Sumatorio de materiales desde inicio de año</a>
-        </li>
-        <li>
-          <a href="{{ url('informes/export?type=mes')}}" class="btn btn-primary">Sumatorio de materiales por mes</a>
-        </li>
-        <li>
-          <a href="{{ url('informes/export?type=logos')}}" class="btn btn-primary">Colaboradores Sin Logo</a>
-        </li>
+        @foreach ($informes as $informe)
+          <li>
+            <a href="{{ url('informes/' . $informe->id )}}" class="btn btn-primary">{{ $informe->nombre }}</a>
+          </li>
+        @endforeach
       </ul>
     </div>
   </div>

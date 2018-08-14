@@ -54,4 +54,4 @@ Route::post('/labels/', 'LabelController@index');
 Route::get('/labels/export', 'LabelController@export');
 
 Route::get('/informes/', 'InformeController@index');
-Route::get('/informes/export', 'InformeController@export');
+Route::get('/informes/{informe}', 'InformeController@show');
