@@ -40,13 +40,13 @@ Route::get('/colaboradores', 'OrganizacionController@colaboradores');
 Route::get('/datatables/personas', 'PersonaController@getData');
 Route::get('/datatables/organizaciones', 'OrganizacionController@getData');
 
+Route::get('/lotes', 'LoteController@index');
 Route::post('/lotes/{tipo}/{id}', 'LoteController@store');
 Route::get('/lotes/{lote}', 'LoteController@show');
 Route::get('/lotes/{lote}/informe', 'LoteController@showInforme');
 Route::get('/lotes/{lote}/edit', 'LoteController@edit');
 Route::patch('/lotes/{lote}', 'LoteController@update');
 
-Route::get('/loteMateriales', 'LoteMaterialController@index');
 Route::post('/loteMateriales', 'LoteMaterialController@store');
 Route::delete('/loteMateriales/{loteMaterial}', 'LoteMaterialController@destroy');
 

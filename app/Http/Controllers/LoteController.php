@@ -16,6 +16,16 @@ class LoteController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+      $lotes = Lote::with(['responsable'])
+          ->orderBy('fecha', 'desc')
+          ->orderBy('id', 'desc')
+          ->paginate();
+
+      return view('lotes.index', compact('lotes'));
+    }
+
 
     public function show(Lote $lote)
     {

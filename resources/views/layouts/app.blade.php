@@ -89,7 +89,8 @@
                   <li class="{{ Request::is('/')? 'active' : ''}}"><a href="{{ url('/')}}">Inicio</a></li>
                   <li class="{{ Request::is('personas')? 'active' : ''}}"><a href="{{ url('personas')}}">Personas</a></li>
                   <li class="{{ Request::is('organizaciones')? 'active' : ''}}"><a href="{{ url('organizaciones')}}">Organizaciones</a></li>
-                  <li class="{{ Request::is('colaboradores')? 'active' : ''}}"><a href="{{ url('colaboradores')}}">Colaboradores</a></li>
+                  <li class="{{ Request::is('lotes')? 'active' : ''}}"><a href="{{ url('lotes')}}">Lotes</a></li>
+                  <li class="{{ Request::is('colaboradores')? 'active' : ''}}"><a href="{{ url('colaboradores')}}">Logos</a></li>
                   <li class="{{ Request::is('informes')? 'active' : ''}}"><a href="{{ url('informes')}}">Informes</a></li>
         		</ul>
       	</nav>
