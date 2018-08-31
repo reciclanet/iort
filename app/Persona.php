@@ -4,7 +4,6 @@ namespace App;
 
 class Persona extends Model
 {
-    //
     public function tipoConocido()
     {
         return $this->belongsTo(TipoConocido::class);
@@ -32,7 +31,7 @@ class Persona extends Model
 
     public function lotes()
     {
-        return $this->hasMany(Lote::class)->orderBy('fecha');
+        return $this->morphMany(Lote::class, 'responsable');
     }
 
     public function getNombreDescriptivo()
@@ -40,5 +39,10 @@ class Persona extends Model
       return $this->nombre .
         (empty($this->apellido_1) ? '' : ' ' . $this->apellido_1) .
         (empty($this->apellido_2) ? '' : ' ' . $this->apellido_2);
+    }
+
+    public function getRuta()
+    {
+      return 'personas';
     }
 }

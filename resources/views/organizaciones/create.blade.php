@@ -4,7 +4,7 @@
 
 <h1>Create</h1>
 
-{!! Form::open(['action' => ['OrganizacionesController@store'], 'files'=>true]) !!}
+{!! Form::open(['action' => ['OrganizacionController@store'], 'files'=>true]) !!}
   @include('organizaciones/form')
 {!! Form::close() !!}
 

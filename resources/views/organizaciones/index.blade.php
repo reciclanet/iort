@@ -29,7 +29,7 @@
         $('#organizaciones-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! url('/datatable/organizaciones') !!}',
+            ajax: '{!! url('/datatables/organizaciones') !!}',
             columns: [
                 { data: 'razon_social', name: 'razon_social' },
                 { data: 'poblacion', name: 'poblacion' },

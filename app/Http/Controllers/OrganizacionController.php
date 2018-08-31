@@ -10,7 +10,7 @@ use App\TipoConocido;
 use App\Http\Requests\GuardarOrganizacionRequest;
 use Yajra\Datatables\Facades\Datatables;
 
-class OrganizacionesController extends Controller
+class OrganizacionController extends Controller
 {
     public function __construct()
     {

@@ -59,7 +59,7 @@ function cargarBotonesEliminar(){
       event.preventDefault();
       $.ajax({
         type: "DELETE",
-        url: "{{ url('loteMaterial/')}}/" + $(this).attr('value'),
+        url: "{{ url('loteMateriales/')}}/" + $(this).attr('value'),
         dataType: "json",
         success: function(data){
           if (data && data.success){
@@ -96,7 +96,7 @@ jQuery(document).ready(function($) {
             console.log(formData);
         $.ajax({
           type: "POST",
-          url: "{{ url('loteMaterial')}}",
+          url: "{{ url('loteMateriales')}}",
           dataType: "json",
           data: formData,
           success: function(data){

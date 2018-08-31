@@ -31,7 +31,7 @@
         $('#personas-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! url('/datatable/personas') !!}',
+            ajax: '{!! url('/datatables/personas') !!}',
             columns: [
                 { data: 'nombre', name: 'nombre' },
                 { data: 'apellido_1', name: 'apellido_1' },

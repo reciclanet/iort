@@ -84,7 +84,7 @@
       <a href="{{ url('organizaciones/' . $organizacion->id . '/edit')}}" class="btn btn-primary">Editar</a>
     </div>
     <div class="col-sm-6">
-      {!! Form::model($organizacion, ['action' => ['LoteController@store', 'organizacion',$organizacion]]) !!}
+      {!! Form::model($organizacion, ['action' => ['LoteController@store', get_class($organizacion), $organizacion->id ]]) !!}
         <button type="submit" class="btn btn-primary">Nuevo</button>
       {!! Form::close() !!}
     </div>

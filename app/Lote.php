@@ -4,16 +4,6 @@ namespace App;
 
 class Lote extends Model
 {
-    public function persona()
-    {
-        return $this->belongsTo(Persona::class);
-    }
-
-    public function organizacion()
-    {
-        return $this->belongsTo(Organizacion::class);
-    }
-
     public function tipoLote()
     {
         return $this->belongsTo(TipoLote::class);
@@ -21,11 +11,7 @@ class Lote extends Model
 
     public function responsable()
     {
-        if (isset($this->persona)) {
-            return $this->persona;
-        } elseif (isset($this->organizacion)) {
-            return $this->organizacion;
-        }
+        return $this->morphTo();
     }
 
     public function materiales()

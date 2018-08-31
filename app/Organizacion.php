@@ -23,7 +23,7 @@ class Organizacion extends Model
 
     public function lotes()
     {
-        return $this->hasMany(Lote::class);
+        return $this->morphMany(Lote::class, 'responsable');
     }
 
     public function getNombreDescriptivo()
@@ -34,5 +34,10 @@ class Organizacion extends Model
     public function tags()
     {
       return $this->belongsToMany(Tag::class);
+    }
+
+    public function getRuta()
+    {
+      return 'organizaciones';
     }
 }

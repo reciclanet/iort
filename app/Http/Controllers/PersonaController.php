@@ -12,7 +12,7 @@ use App\Provincia;
 use App\Http\Requests\GuardarPersonaRequest;
 use Yajra\Datatables\Facades\Datatables;
 
-class PersonasController extends Controller
+class PersonaController extends Controller
 {
     public function __construct()
     {

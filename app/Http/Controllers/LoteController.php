@@ -19,9 +19,8 @@ class LoteController extends Controller
 
     public function show(Lote $lote)
     {
-      $url = isset($lote->persona) ? '/personas/' . $lote->persona_id
-        : '/organizaciones/' . $lote->organizacion_id;
-      $breadcrumbs[] = ['title' => $lote->responsable()->getNombreDescriptivo(),'url' => $url];
+      $url =  '/' . $lote->responsable->getRuta() . '/' . $lote->responsable->id;
+      $breadcrumbs[] = ['title' => $lote->responsable->getNombreDescriptivo(),'url' => $url];
       $breadcrumbs[] = ['title' => 'lote'];
 
       return view('lotes.show', compact('lote', 'breadcrumbs'));
@@ -29,7 +28,7 @@ class LoteController extends Controller
 
     public function showInforme(Lote $lote)
     {
-        $responsable = $lote->responsable();
+        $responsable = $lote->responsable;
 
         return view('lotes.informe', compact('lote', 'responsable'));
     }
@@ -39,13 +38,8 @@ class LoteController extends Controller
         $lote = new Lote;
         $lote->fecha = Carbon::now();
         $lote->descripcion = '';
-        if ($tipo == 'persona') {
-            $lote->persona_id = $id;
-        } elseif ($tipo == 'organizacion') {
-            $lote->organizacion_id = $id;
-        } else {
-            dd();
-        }
+        $lote->responsable_type = $tipo;
+        $lote->responsable_id = $id;
 
         if ($lote->save()) {
             return redirect('/lotes/'.$lote->id .'/edit');
@@ -60,9 +54,8 @@ class LoteController extends Controller
         $tiposLote = TipoLote::pluck('nombre', 'id');
         $edicion = true;
 
-        $url = isset($lote->persona) ? '/personas/' . $lote->persona_id
-          : '/organizaciones/' . $lote->organizacion_id;
-        $breadcrumbs[] = ['title' => $lote->responsable()->getNombreDescriptivo(),'url' => $url];
+        $url =  '/' . $lote->responsable->getRuta() . '/' . $lote->responsable->id;
+        $breadcrumbs[] = ['title' => $lote->responsable->getNombreDescriptivo(),'url' => $url];
         $breadcrumbs[] = ['title' => 'lote', 'url' => '/lotes/' . $lote->id];
         $breadcrumbs[] = ['title' => 'editar'];
 
@@ -90,6 +83,6 @@ class LoteController extends Controller
             LoteMaterial::crearLoteMateriales($lote->id, $material_id, $cantidad, $txae, $borradoSeguro);
         }
 
-        return view('lotes.show', compact('lote'));
+        return redirect()->action('LoteController@show', compact('lote'));
     }
 }
