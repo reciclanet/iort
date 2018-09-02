@@ -8,6 +8,7 @@
             <tr>
               <th>Id</th>
               <th>Fecha</th>
+              <th>Tipo</th>
               <th>Descripción</th>
               <th>Responsable</th>
             </tr>
@@ -17,6 +18,7 @@
             <tr>
               <td><a href="{{ url('lotes/' . $lote->id ) }}">{{ $lote->id }}</a></td>
               <td>{{ $lote->fecha->format('d/m/Y') }}</td>
+              <td>{{ $lote->tipoLote->nombre }}</td>
               <td>{{ $lote->descripcion }}</td>
               <td>{{ $lote->responsable->getNombreDescriptivo() }}</td>
             </tr>

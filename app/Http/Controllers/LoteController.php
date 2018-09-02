@@ -18,7 +18,7 @@ class LoteController extends Controller
 
     public function index()
     {
-      $lotes = Lote::with(['responsable'])
+      $lotes = Lote::with(['responsable', 'tipoLote'])
           ->orderBy('fecha', 'desc')
           ->orderBy('id', 'desc')
           ->paginate();
