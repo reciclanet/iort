@@ -22,7 +22,7 @@ class LoteMaterialController extends Controller
 
           $returnHTML = view('lote_material.index')
             ->with('lote', Lote::find($lote_id))
-            ->with('materiales', Material::pluck('nombre', 'id'))
+            ->with('materiales', Material::orderBy('nombre')->pluck('nombre', 'id'))
             ->with('edicion', true)
             ->render();
           return response()->json(['success' => true, 'html'=>$returnHTML]);
@@ -37,7 +37,7 @@ class LoteMaterialController extends Controller
 
         $returnHTML = view('lote_material.index')
           ->with('lote', $loteMaterial->lote)
-          ->with('materiales', Material::pluck('nombre', 'id'))
+          ->with('materiales', Material::orderBy('nombre')->pluck('nombre', 'id'))
           ->with('edicion', true)
           ->render();
         return response()->json(['success' => true, 'html'=>$returnHTML]);
