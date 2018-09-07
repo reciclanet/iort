@@ -9,26 +9,30 @@ use Illuminate\Http\Request;
 
 class LoteMaterialController extends Controller
 {
+
+
     public function store()
     {
-      $lote_id = request()->input('lote_id');
-      $material_id = request()->input('material_id');
-      $cantidad = request()->input('cantidad');
-      $txae = request()->input('txae');
-      $borradoSeguro = request()->input('borrado_seguro');
-      if (!empty($lote_id) && !empty($material_id) && !empty($cantidad)) {
+      $this->validate(request(), [
+        'lote_id' => 'required',
+        'material_id' => 'required',
+        'cantidad' => 'numeric',
+        'precio' => 'numeric'],
+        ['material_id.required'  => 'Hay que seleccionar un tipo de material',
+      ]);
 
-          LoteMaterial::crearLoteMateriales($lote_id, $material_id, $cantidad, $txae, $borradoSeguro);
+      LoteMaterial::crearLoteMateriales(
+        request()->except('cantidad'),
+        request()->input('cantidad', 1)
+      );
 
-          $returnHTML = view('lote_material.index')
-            ->with('lote', Lote::find($lote_id))
-            ->with('materiales', Material::orderBy('nombre')->pluck('nombre', 'id'))
-            ->with('edicion', true)
-            ->render();
-          return response()->json(['success' => true, 'html'=>$returnHTML]);
-      }
+      $returnHTML = view('lote_material.index')
+        ->with('lote', Lote::find(request()->input('lote_id')))
+        ->with('materiales', Material::orderBy('nombre')->pluck('nombre', 'id'))
+        ->with('edicion', true)
+        ->render();
 
-      return response()->json(['success' => false, 'message'=>'algo']);
+      return response()->json(['success' => true, 'html'=>$returnHTML]);
     }
 
     public function destroy(LoteMaterial $loteMaterial)

@@ -74,19 +74,17 @@
     <h2>Lotes</h2>
     <ul>
       @foreach ($organizacion->lotes as $lote)
-        <li><a href="{{ url('lotes/' . $lote->id )}}">{{ $lote->created_at->format('d/m/Y') . ' - ' . $lote->descripcion }}</a></li>
+        <li><a href="{{ url("lotes/$lote->id" )}}">{{ $lote->created_at->format('d/m/Y') . ' - ' . $lote->descripcion }}</a></li>
       @endforeach
     </ul>
   </div>
 
   <div style="clear:both;">
     <div class="col-sm-6">
-      <a href="{{ url('organizaciones/' . $organizacion->id . '/edit')}}" class="btn btn-primary">Editar</a>
+      <a href="{{ url("organizaciones/$organizacion->id/edit") }}" class="btn btn-primary">Editar</a>
     </div>
     <div class="col-sm-6">
-      {!! Form::model($organizacion, ['action' => ['LoteController@store', get_class($organizacion), $organizacion->id ]]) !!}
-        <button type="submit" class="btn btn-primary">Nuevo</button>
-      {!! Form::close() !!}
+      <a href="{{ action('LoteController@create').'?'.http_build_query(["tipo" => get_class($organizacion), "id" => $organizacion->id]) }}" class="btn btn-primary">Nuevo</a>
     </div>
   </div>
 @endsection

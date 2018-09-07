@@ -43,13 +43,24 @@ class LoteController extends Controller
         return view('lotes.informe', compact('lote', 'responsable'));
     }
 
-    public function store($tipo, $id)
+    public function create()
+    {
+      $tipo = request()->input('tipo');
+      $id = request()->input('id');
+
+      $tiposLote = TipoLote::pluck('nombre', 'id');
+
+      return view('lotes.create', compact('tipo', 'id', 'tiposLote'));
+    }
+
+    public function store()
     {
         $lote = new Lote;
         $lote->fecha = Carbon::now();
         $lote->descripcion = '';
-        $lote->responsable_type = $tipo;
-        $lote->responsable_id = $id;
+        $lote->responsable_type = request()->input('tipo');
+        $lote->responsable_id = request()->input('id');
+        $lote->tipo_lote_id = request()->input('tipo_lote_id');
 
         if ($lote->save()) {
             return redirect('/lotes/'.$lote->id .'/edit');
@@ -80,17 +91,25 @@ class LoteController extends Controller
         }
         $lote->update([
           'descripcion' => $descripcion,
-          'fecha' => request()->input('fecha'),
-          'tipo_lote_id' => request()->input('tipo_lote_id')
+          'fecha' => request()->input('fecha')
         ]);
 
         $material_id = request()->input('material_id');
-        $cantidad = request()->input('cantidad');
-        $txae = request()->input('txae');
-        $borradoSeguro = request()->input('borrado_seguro');
-        if (!empty($material_id) && !empty($cantidad)) {
-
-            LoteMaterial::crearLoteMateriales($lote->id, $material_id, $cantidad, $txae, $borradoSeguro);
+        if (!empty($material_id)) {
+          $datos = request()
+            ->only(['material_id',
+                    'codigo',
+                    'marca',
+                    'modelo',
+                    'borrado_seguro',
+                    'txae',
+                    'precio'
+          ]);
+          $datos['lote_id'] = $lote->id;
+          LoteMaterial::crearLoteMateriales(
+            $datos,
+            request()->input('cantidad', 1)
+          );
         }
 
         return redirect()->action('LoteController@show', compact('lote'));

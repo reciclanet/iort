@@ -28,26 +28,17 @@ class LoteMaterial extends Model
         return $codigo ? $codigo + 1 : 1;
     }
 
-    public static function crearLoteMateriales($lote_id, $material_id, $cantidad, $txae, $borradoSeguro)
+    public static function crearLoteMateriales($datos, $cantidad)
     {
-      if (!empty($lote_id) && !empty($material_id) && !empty($cantidad)) {
-        $material = Material::find($material_id);
+      $material = Material::findOrFail($datos['material_id']);
+      $lote = Lote::with('tipoLote')->findOrFail($datos['lote_id']);
 
-        for($contador = 0; $contador < $cantidad; $contador++){
-          $loteMaterial = new LoteMaterial();
-          $loteMaterial->material_id = $material_id;
-          $loteMaterial->lote_id = $lote_id;
-          $loteMaterial->txae = ($txae == 'true');
-          if (!$loteMaterial->txae && $material->genera_numero) {
-            $loteMaterial->codigo = LoteMaterial::getCodigoSiguiente();
-          }
-          $loteMaterial->marca = "";
-          $loteMaterial->modelo = '';
-          $loteMaterial->tag = '';
-          $loteMaterial->borrado_seguro = ($borradoSeguro == 'true');
-          $loteMaterial->foto = '';
-          $loteMaterial->save();
+      for($contador = 0; $contador < $cantidad; $contador++){
+        $loteMaterial = new LoteMaterial($datos);
+        if ($lote->tipoLote->genera_numero && !$loteMaterial->txae && $material->genera_numero) {
+          $loteMaterial->codigo = LoteMaterial::getCodigoSiguiente();
         }
+        $loteMaterial->save();
       }
     }
 }

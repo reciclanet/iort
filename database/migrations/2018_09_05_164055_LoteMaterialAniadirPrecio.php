@@ -14,6 +14,12 @@ class LoteMaterialAniadirPrecio extends Migration
     public function up()
     {
       Schema::table('lote_materiales', function (Blueprint $table) {
+          $table->string('marca')->nullable()->change();
+          $table->string('modelo')->nullable()->change();
+          $table->string('tag')->nullable()->change();
+          $table->boolean('borrado_seguro')->nullable()->change();
+          $table->string('foto')->nullable()->change();
+          $table->boolean('txae')->nullable()->change();
           $table->decimal('precio', 10, 2)->nullable();
       });
     }
@@ -27,6 +33,12 @@ class LoteMaterialAniadirPrecio extends Migration
     {
       Schema::table('lote_materiales', function (Blueprint $table) {
           $table->dropColumn('precio');
+          $table->string('marca')->change();
+          $table->string('modelo')->change();
+          $table->string('tag')->change();
+          $table->boolean('borrado_seguro')->change();
+          $table->string('foto')->change();
+          $table->boolean('txae')->change();
       });
     }
 }

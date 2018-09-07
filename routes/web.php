@@ -41,7 +41,8 @@ Route::get('/datatables/personas', 'PersonaController@getData');
 Route::get('/datatables/organizaciones', 'OrganizacionController@getData');
 
 Route::get('/lotes', 'LoteController@index');
-Route::post('/lotes/{tipo}/{id}', 'LoteController@store');
+Route::get('/lotes/create', 'LoteController@create');
+Route::post('/lotes', 'LoteController@store');
 Route::get('/lotes/{lote}', 'LoteController@show');
 Route::get('/lotes/{lote}/informe', 'LoteController@showInforme');
 Route::get('/lotes/{lote}/edit', 'LoteController@edit');
