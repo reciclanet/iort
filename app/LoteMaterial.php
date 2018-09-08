@@ -41,4 +41,11 @@ class LoteMaterial extends Model
         $loteMaterial->save();
       }
     }
+
+    public function scopeEntrada($query)
+    {
+      return $query->whereHas('lote.tipoLote', function ($query) {
+          $query->whereNombre('Entrada');
+      });
+    }
 }
