@@ -45,4 +45,9 @@ class Persona extends Model
     {
       return 'personas';
     }
+
+    public function getCodigoAttribute()
+    {
+      return 'Particular';
+    }
 }

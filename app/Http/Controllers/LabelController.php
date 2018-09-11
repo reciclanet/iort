@@ -43,7 +43,7 @@ class LabelController extends Controller
     $file = fopen('php://output', 'w');
     foreach ($materiales as $material) {
       fputcsv($file, [$material->codigo,
-          (isset($material->lote->persona) ? 'Particular' : $material->lote->responsable->codigo),
+          ($material->lote->responsable->codigo),
           $material->lote->fecha->format('Ymd')]);
     }
     fclose($file);
