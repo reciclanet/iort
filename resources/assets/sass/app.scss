@@ -88,3 +88,9 @@ div.content {
         float: none;
     }
 }
+
+.alert {
+  position: absolute;
+  right: 10px;
+  z-index: 10;
+}

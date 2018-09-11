@@ -108,6 +108,7 @@
                   @endforeach
               </ol>
           @endif
+          @include ('layouts.flash')
           @yield('content')
         </div>
     </div>
