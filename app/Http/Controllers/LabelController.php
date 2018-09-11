@@ -19,7 +19,6 @@ class LabelController extends Controller
       ->join('lotes', 'lote_materiales.lote_id', '=', 'lotes.id')
       ->leftJoin('organizaciones', 'lotes.organizacion_id', '=', 'organizaciones.id')
       ->whereNotNull('lote_materiales.codigo')
-      //->where('lotes.fecha', '>=', '2018-05-02')
       ->paginate(10);
 
       return view('labels.index', compact('materiales'));
@@ -28,7 +27,7 @@ class LabelController extends Controller
   public function export(LabelsFiltroRequest $request)
   {
     $filtro = LoteMaterial::whereNotNull('codigo')
-      ->with('lote');
+      ->with('lote','lote.responsable');
     if ($lote_id = request()->input('lote')) {
       $filtro = $filtro->where('lote_id', $lote_id);
     }
