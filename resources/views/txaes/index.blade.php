@@ -4,6 +4,14 @@
   <div id="loteMateriales">
     <h1>Materiales Lotes</h1>
     <div>
+      <form class="navbar-form navbar-left" role="search" method="GET">
+          <div class="form-group">
+              <input type="text" name="q" class="form-control" placeholder="Buscar..." value="{{ request('q') }}">
+          </div>
+          <button type="submit" class="btn btn-default">
+              <span class="glyphicon glyphicon-search"></span>
+          </button>
+      </form>
       <table class="table">
           <thead>
               <tr>
@@ -28,7 +36,7 @@
             @endforeach
           </tbody>
       </table>
-      {{ $loteMateriales->links() }}
+      {{ $loteMateriales->appends($_GET)->links() }}
     </div>
   </div>
 @endsection

@@ -14,11 +14,18 @@ class TxaeController extends Controller
 
     public function index()
     {
-        $loteMateriales = LoteMaterial::with(['material', 'lote', 'lote.responsable'])
+
+        $consulta = LoteMaterial::with(['material', 'lote', 'lote.responsable'])
             ->entrada()
             ->noTxae()
-            ->orderBy('codigo', 'desc')
-            ->paginate();
+            ->orderBy('codigo', 'desc');
+
+        if (request()->has('q')) {
+          $q = request('q');
+          $consulta->where('codigo', 'like', "%$q%");
+        }
+
+        $loteMateriales = $consulta->paginate();
 
         return view('txaes.index', compact('loteMateriales'));
     }
