@@ -48,4 +48,12 @@ class LoteMaterial extends Model
           $query->whereNombre('Entrada');
       });
     }
+
+    public function scopeNoTxae($query)
+    {
+      return $query->where(function ($query) {
+          $query->whereNull('txae')
+                ->orWhere('txae','=','0');
+      });
+    }
 }

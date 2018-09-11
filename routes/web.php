@@ -55,6 +55,7 @@ Route::get('/labels/', 'LabelController@index');
 Route::post('/labels/', 'LabelController@index');
 Route::get('/labels/export', 'LabelController@export');
 
+Route::get('/txaes/', 'TxaeController@index');
 Route::get('/txaes/edit', 'TxaeController@edit');
 Route::patch('/txaes', 'TxaeController@update');
 

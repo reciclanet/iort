@@ -12,6 +12,17 @@ class TxaeController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        $loteMateriales = LoteMaterial::with(['material', 'lote', 'lote.responsable'])
+            ->entrada()
+            ->noTxae()
+            ->orderBy('codigo', 'desc')
+            ->paginate();
+
+        return view('txaes.index', compact('loteMateriales'));
+    }
+
     public function edit()
     {
         return view('txaes.edit');
@@ -22,25 +33,28 @@ class TxaeController extends Controller
         $this->validate(request(), [
           'codigo' => 'required|numeric',
         ]);
-        $materiales = LoteMaterial::Entrada()
+        $material = LoteMaterial::Entrada()
           ->whereCodigo(request()->input('codigo'))
-          ->where(function ($query) {
-              $query->whereNull('txae')
-                    ->orWhere('txae','=','0');
-          })
-          ->get();
+          ->noTxae()
+          ->first();
 
-        $contador = 0;
-        foreach($materiales as $material) {
+        $success = 'flash_error';
+        $message = "El código no ha podido marcarse como Txae.";
+
+        if ($material) {
           $material->txae = 1;
           $material->save();
-          $contador++;
+          $success = 'flash_ok';
+          $message = "El código ha sido marcado como Txae.";
+
         }
 
-        $mensaje = "Se han marcado $contador registros.";
+        session()->flash($success, $message);
 
-        return redirect()
-          ->action('TxaeController@edit')
-          ->with('message', $mensaje);
+        if(request()->ajax()){
+            return response()->json(['success' => true]);
+        }
+
+        return back();
     }
 }
