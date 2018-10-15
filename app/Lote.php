@@ -24,15 +24,22 @@ class Lote extends Model
         return ['created_at', 'updated_at', 'fecha'];
     }
 
-    public function getMaterialesAgrupados()
+    public function getMaterialesAgrupados($campos = [])
     {
       $materiales = [];
       foreach($this->materiales as $material){
-        $codigoMaterial = $material->material_id . '_' . $material->borrado_seguro;
+        $codigoMaterial = "";
+        foreach($campos as $campo){
+          $codigoMaterial .= $material[$campo] . "_";
+        }
+        //$codigoMaterial = "($material->material_id)_($material->borrado_seguro)";
         if(array_key_exists($codigoMaterial, $materiales)){
-          $materiales[$codigoMaterial]->cantidad++;
+          $materiales[$codigoMaterial]->cantidadSuma++;
+          $materiales[$codigoMaterial]->precioSuma += $material->precio ?? 0;
+
         } else {
-          $material->cantidad = 1;
+          $material->cantidadSuma = 1;
+          $material->precioSuma = $material->precio ?? 0;
           $materiales[$codigoMaterial] = $material;
         }
       }
