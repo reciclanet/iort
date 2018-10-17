@@ -38,9 +38,7 @@ class LoteController extends Controller
 
     public function showInforme(Lote $lote)
     {
-        $responsable = $lote->responsable;
-
-        return view('lotes.informe', compact('lote', 'responsable'));
+        return view('lotes.informe', compact('lote'));
     }
 
     public function create()

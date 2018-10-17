@@ -6,7 +6,10 @@
     <th>Total</th>
   </tr>
   <tr class="hr"><td colspan="3"></td></tr>
-  <?php $total = 0 ?>
+  @php
+    $total = 0;
+  @endphp
+
   @foreach ($lote->getMaterialesAgrupados(['material_id','precio']) as $material)
     <tr>
       <td class="text-center">{{ $material->material->nombre }}</td>
@@ -15,7 +18,9 @@
       <td class="text-center">{{ $material->precioSuma }}€</td>
     </tr>
     <tr class="hr"><td colspan="3"></td></tr>
-    <?php $total += $material->precioSuma ?>
+    @php
+      $total += $material->precioSuma
+    @endphp
   @endforeach
   <tr>
     <td class="text-center"></td>
